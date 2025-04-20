@@ -1,0 +1,2705 @@
+
+
+Microchip MPLAB XC8 Assembler V3.00 build 20241204225717 
+                                                                                               Sat Apr 19 19:01:24 2025
+
+Microchip MPLAB XC8 C Compiler v3.00 (Free license) build 20241204225717 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	idataBANK0,global,class=CODE,space=0,delta=2,noexec
+     5                           	psect	strings,global,class=STRING,space=0,delta=2,noexec
+     6                           	psect	cinit,global,class=CODE,space=0,merge=1,delta=2
+     7                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     8                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     9                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1,noexec
+    10                           	psect	clrtext,global,class=CODE,space=0,delta=2
+    11                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    13                           	psect	maintext,global,class=CODE,space=0,split=1,delta=2
+    14                           	psect	text1,local,class=CODE,space=0,merge=1,delta=2
+    15                           	psect	text2,local,class=CODE,space=0,merge=1,delta=2
+    16                           	psect	text3,local,class=CODE,space=0,merge=1,delta=2
+    17                           	psect	text4,local,class=CODE,space=0,merge=1,delta=2
+    18                           	psect	text5,local,class=CODE,space=0,merge=1,delta=2
+    19                           	psect	text6,local,class=CODE,space=0,merge=1,delta=2
+    20                           	psect	text7,local,class=CODE,space=0,merge=1,delta=2
+    21                           	psect	text8,local,class=CODE,space=0,merge=1,delta=2
+    22                           	psect	text9,local,class=CODE,space=0,merge=1,delta=2
+    23                           	psect	text10,local,class=CODE,space=0,merge=1,delta=2
+    24                           	psect	text11,local,class=CODE,space=0,merge=1,delta=2
+    25                           	psect	text12,local,class=CODE,space=0,merge=1,delta=2
+    26                           	psect	text13,local,class=CODE,space=0,merge=1,delta=2
+    27                           	psect	text14,local,class=CODE,space=0,merge=1,delta=2
+    28                           	psect	intentry,global,class=CODE,space=0,delta=2
+    29                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    30                           	dabs	1,0x7E,2
+    31     0000                     
+    32                           ; Generated 12/10/2023 GMT
+    33                           ; 
+    34                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    35                           ; All rights reserved.
+    36                           ; 
+    37                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    38                           ; 
+    39                           ; Redistribution and use in source and binary forms, with or without modification, are
+    40                           ; permitted provided that the following conditions are met:
+    41                           ; 
+    42                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    43                           ;        conditions and the following disclaimer.
+    44                           ; 
+    45                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    46                           ;        of conditions and the following disclaimer in the documentation and/or other
+    47                           ;        materials provided with the distribution. Publication is not required when
+    48                           ;        this file is used in an embedded application.
+    49                           ; 
+    50                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    51                           ;        software without specific prior written permission.
+    52                           ; 
+    53                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    54                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    55                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    56                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    57                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    58                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    59                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    60                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    61                           ; 
+    62                           ; 
+    63                           ; Code-generator required, PIC16F887 Definitions
+    64                           ; 
+    65                           ; SFR Addresses
+    66     0004                     fsr             equ	4
+    67     0004                     fsr0            equ	4
+    68     0000                     indf            equ	0
+    69     0000                     indf0           equ	0
+    70     0002                     pc              equ	2
+    71     0002                     pcl             equ	2
+    72     000A                     pclath          equ	10
+    73     0003                     status          equ	3
+    74     0000                     INDF            equ	0	;# 
+    75     0001                     TMR0            equ	1	;# 
+    76     0002                     PCL             equ	2	;# 
+    77     0003                     STATUS          equ	3	;# 
+    78     0004                     FSR             equ	4	;# 
+    79     0005                     PORTA           equ	5	;# 
+    80     0006                     PORTB           equ	6	;# 
+    81     0007                     PORTC           equ	7	;# 
+    82     0008                     PORTD           equ	8	;# 
+    83     0009                     PORTE           equ	9	;# 
+    84     000A                     PCLATH          equ	10	;# 
+    85     000B                     INTCON          equ	11	;# 
+    86     000C                     PIR1            equ	12	;# 
+    87     000D                     PIR2            equ	13	;# 
+    88     000E                     TMR1            equ	14	;# 
+    89     000E                     TMR1L           equ	14	;# 
+    90     000F                     TMR1H           equ	15	;# 
+    91     0010                     T1CON           equ	16	;# 
+    92     0011                     TMR2            equ	17	;# 
+    93     0012                     T2CON           equ	18	;# 
+    94     0013                     SSPBUF          equ	19	;# 
+    95     0014                     SSPCON          equ	20	;# 
+    96     0015                     CCPR1           equ	21	;# 
+    97     0015                     CCPR1L          equ	21	;# 
+    98     0016                     CCPR1H          equ	22	;# 
+    99     0017                     CCP1CON         equ	23	;# 
+   100     0018                     RCSTA           equ	24	;# 
+   101     0019                     TXREG           equ	25	;# 
+   102     001A                     RCREG           equ	26	;# 
+   103     001B                     CCPR2           equ	27	;# 
+   104     001B                     CCPR2L          equ	27	;# 
+   105     001C                     CCPR2H          equ	28	;# 
+   106     001D                     CCP2CON         equ	29	;# 
+   107     001E                     ADRESH          equ	30	;# 
+   108     001F                     ADCON0          equ	31	;# 
+   109     0081                     OPTION_REG      equ	129	;# 
+   110     0085                     TRISA           equ	133	;# 
+   111     0086                     TRISB           equ	134	;# 
+   112     0087                     TRISC           equ	135	;# 
+   113     0088                     TRISD           equ	136	;# 
+   114     0089                     TRISE           equ	137	;# 
+   115     008C                     PIE1            equ	140	;# 
+   116     008D                     PIE2            equ	141	;# 
+   117     008E                     PCON            equ	142	;# 
+   118     008F                     OSCCON          equ	143	;# 
+   119     0090                     OSCTUNE         equ	144	;# 
+   120     0091                     SSPCON2         equ	145	;# 
+   121     0092                     PR2             equ	146	;# 
+   122     0093                     SSPADD          equ	147	;# 
+   123     0093                     SSPMSK          equ	147	;# 
+   124     0093                     MSK             equ	147	;# 
+   125     0094                     SSPSTAT         equ	148	;# 
+   126     0095                     WPUB            equ	149	;# 
+   127     0096                     IOCB            equ	150	;# 
+   128     0097                     VRCON           equ	151	;# 
+   129     0098                     TXSTA           equ	152	;# 
+   130     0099                     SPBRG           equ	153	;# 
+   131     009A                     SPBRGH          equ	154	;# 
+   132     009B                     PWM1CON         equ	155	;# 
+   133     009C                     ECCPAS          equ	156	;# 
+   134     009D                     PSTRCON         equ	157	;# 
+   135     009E                     ADRESL          equ	158	;# 
+   136     009F                     ADCON1          equ	159	;# 
+   137     0105                     WDTCON          equ	261	;# 
+   138     0107                     CM1CON0         equ	263	;# 
+   139     0108                     CM2CON0         equ	264	;# 
+   140     0109                     CM2CON1         equ	265	;# 
+   141     010C                     EEDATA          equ	268	;# 
+   142     010C                     EEDAT           equ	268	;# 
+   143     010D                     EEADR           equ	269	;# 
+   144     010E                     EEDATH          equ	270	;# 
+   145     010F                     EEADRH          equ	271	;# 
+   146     0185                     SRCON           equ	389	;# 
+   147     0187                     BAUDCTL         equ	391	;# 
+   148     0188                     ANSEL           equ	392	;# 
+   149     0189                     ANSELH          equ	393	;# 
+   150     018C                     EECON1          equ	396	;# 
+   151     018D                     EECON2          equ	397	;# 
+   152     0000                     INDF            equ	0	;# 
+   153     0001                     TMR0            equ	1	;# 
+   154     0002                     PCL             equ	2	;# 
+   155     0003                     STATUS          equ	3	;# 
+   156     0004                     FSR             equ	4	;# 
+   157     0005                     PORTA           equ	5	;# 
+   158     0006                     PORTB           equ	6	;# 
+   159     0007                     PORTC           equ	7	;# 
+   160     0008                     PORTD           equ	8	;# 
+   161     0009                     PORTE           equ	9	;# 
+   162     000A                     PCLATH          equ	10	;# 
+   163     000B                     INTCON          equ	11	;# 
+   164     000C                     PIR1            equ	12	;# 
+   165     000D                     PIR2            equ	13	;# 
+   166     000E                     TMR1            equ	14	;# 
+   167     000E                     TMR1L           equ	14	;# 
+   168     000F                     TMR1H           equ	15	;# 
+   169     0010                     T1CON           equ	16	;# 
+   170     0011                     TMR2            equ	17	;# 
+   171     0012                     T2CON           equ	18	;# 
+   172     0013                     SSPBUF          equ	19	;# 
+   173     0014                     SSPCON          equ	20	;# 
+   174     0015                     CCPR1           equ	21	;# 
+   175     0015                     CCPR1L          equ	21	;# 
+   176     0016                     CCPR1H          equ	22	;# 
+   177     0017                     CCP1CON         equ	23	;# 
+   178     0018                     RCSTA           equ	24	;# 
+   179     0019                     TXREG           equ	25	;# 
+   180     001A                     RCREG           equ	26	;# 
+   181     001B                     CCPR2           equ	27	;# 
+   182     001B                     CCPR2L          equ	27	;# 
+   183     001C                     CCPR2H          equ	28	;# 
+   184     001D                     CCP2CON         equ	29	;# 
+   185     001E                     ADRESH          equ	30	;# 
+   186     001F                     ADCON0          equ	31	;# 
+   187     0081                     OPTION_REG      equ	129	;# 
+   188     0085                     TRISA           equ	133	;# 
+   189     0086                     TRISB           equ	134	;# 
+   190     0087                     TRISC           equ	135	;# 
+   191     0088                     TRISD           equ	136	;# 
+   192     0089                     TRISE           equ	137	;# 
+   193     008C                     PIE1            equ	140	;# 
+   194     008D                     PIE2            equ	141	;# 
+   195     008E                     PCON            equ	142	;# 
+   196     008F                     OSCCON          equ	143	;# 
+   197     0090                     OSCTUNE         equ	144	;# 
+   198     0091                     SSPCON2         equ	145	;# 
+   199     0092                     PR2             equ	146	;# 
+   200     0093                     SSPADD          equ	147	;# 
+   201     0093                     SSPMSK          equ	147	;# 
+   202     0093                     MSK             equ	147	;# 
+   203     0094                     SSPSTAT         equ	148	;# 
+   204     0095                     WPUB            equ	149	;# 
+   205     0096                     IOCB            equ	150	;# 
+   206     0097                     VRCON           equ	151	;# 
+   207     0098                     TXSTA           equ	152	;# 
+   208     0099                     SPBRG           equ	153	;# 
+   209     009A                     SPBRGH          equ	154	;# 
+   210     009B                     PWM1CON         equ	155	;# 
+   211     009C                     ECCPAS          equ	156	;# 
+   212     009D                     PSTRCON         equ	157	;# 
+   213     009E                     ADRESL          equ	158	;# 
+   214     009F                     ADCON1          equ	159	;# 
+   215     0105                     WDTCON          equ	261	;# 
+   216     0107                     CM1CON0         equ	263	;# 
+   217     0108                     CM2CON0         equ	264	;# 
+   218     0109                     CM2CON1         equ	265	;# 
+   219     010C                     EEDATA          equ	268	;# 
+   220     010C                     EEDAT           equ	268	;# 
+   221     010D                     EEADR           equ	269	;# 
+   222     010E                     EEDATH          equ	270	;# 
+   223     010F                     EEADRH          equ	271	;# 
+   224     0185                     SRCON           equ	389	;# 
+   225     0187                     BAUDCTL         equ	391	;# 
+   226     0188                     ANSEL           equ	392	;# 
+   227     0189                     ANSELH          equ	393	;# 
+   228     018C                     EECON1          equ	396	;# 
+   229     018D                     EECON2          equ	397	;# 
+   230                           
+   231                           	psect	idataBANK0
+   232     03B4                     __pidataBANK0:
+   233                           
+   234                           ;initializer for Jogging@last_jog_button
+   235     03B4  3401               	retlw	1
+   236     000B                     _INTCONbits     set	11
+   237     0001                     _TMR0           set	1
+   238     0007                     _PORTC          set	7
+   239     0008                     _PORTD          set	8
+   240     0006                     _PORTB          set	6
+   241     0035                     _RB5            set	53
+   242     0043                     _RD3            set	67
+   243     0042                     _RD2            set	66
+   244     0041                     _RD1            set	65
+   245     0040                     _RD0            set	64
+   246     0032                     _RB2            set	50
+   247     0031                     _RB1            set	49
+   248     0030                     _RB0            set	48
+   249     0038                     _RC0            set	56
+   250     003D                     _RC5            set	61
+   251     003C                     _RC4            set	60
+   252     003B                     _RC3            set	59
+   253     003A                     _RC2            set	58
+   254     0039                     _RC1            set	57
+   255     0081                     _OPTION_REG     set	129
+   256     0087                     _TRISC          set	135
+   257     0088                     _TRISD          set	136
+   258     0086                     _TRISB          set	134
+   259     008F                     _OSCCON         set	143
+   260     0189                     _ANSELH         set	393
+   261     0188                     _ANSEL          set	392
+   262                           
+   263                           	psect	strings
+   264     0024                     __pstrings:
+   265     0024                     stringtab:
+   266     0024                     __stringtab:
+   267     0024                     stringcode:	
+   268                           ;	String table - string pointers are 1 byte each
+   269                           
+   270     0024                     stringdir:
+   271     0024  3000               	movlw	high stringdir
+   272     0025  008A               	movwf	10
+   273     0026  0804               	movf	4,w
+   274     0027  0A84               	incf	4,f
+   275     0028  0782               	addwf	2,f
+   276     0029                     __stringbase:
+   277     0029  3400               	retlw	0
+   278     002A                     __end_of__stringtab:
+   279     002A                     STR_5:
+   280     002A  3447               	retlw	71	;'G'
+   281     002B  3469               	retlw	105	;'i'
+   282     002C  3472               	retlw	114	;'r'
+   283     002D  3461               	retlw	97	;'a'
+   284     002E  346E               	retlw	110	;'n'
+   285     002F  3464               	retlw	100	;'d'
+   286     0030  346F               	retlw	111	;'o'
+   287     0031  3420               	retlw	32	;' '
+   288     0032  3444               	retlw	68	;'D'
+   289     0033  3445               	retlw	69	;'E'
+   290     0034  3452               	retlw	82	;'R'
+   291     0035  3445               	retlw	69	;'E'
+   292     0036  3443               	retlw	67	;'C'
+   293     0037  3448               	retlw	72	;'H'
+   294     0038  3441               	retlw	65	;'A'
+   295     0039  3420               	retlw	32	;' '
+   296     003A  3400               	retlw	0
+   297     003B                     STR_2:
+   298     003B  344D               	retlw	77	;'M'
+   299     003C  346F               	retlw	111	;'o'
+   300     003D  3464               	retlw	100	;'d'
+   301     003E  346F               	retlw	111	;'o'
+   302     003F  343A               	retlw	58	;':'
+   303     0040  3420               	retlw	32	;' '
+   304     0041  3448               	retlw	72	;'H'
+   305     0042  3441               	retlw	65	;'A'
+   306     0043  344C               	retlw	76	;'L'
+   307     0044  3446               	retlw	70	;'F'
+   308     0045  3420               	retlw	32	;' '
+   309     0046  3453               	retlw	83	;'S'
+   310     0047  3454               	retlw	84	;'T'
+   311     0048  3445               	retlw	69	;'E'
+   312     0049  3450               	retlw	80	;'P'
+   313     004A  3420               	retlw	32	;' '
+   314     004B  3400               	retlw	0
+   315     004C                     STR_1:
+   316     004C  344D               	retlw	77	;'M'
+   317     004D  346F               	retlw	111	;'o'
+   318     004E  3464               	retlw	100	;'d'
+   319     004F  346F               	retlw	111	;'o'
+   320     0050  343A               	retlw	58	;':'
+   321     0051  3420               	retlw	32	;' '
+   322     0052  3446               	retlw	70	;'F'
+   323     0053  3455               	retlw	85	;'U'
+   324     0054  344C               	retlw	76	;'L'
+   325     0055  344C               	retlw	76	;'L'
+   326     0056  3420               	retlw	32	;' '
+   327     0057  3453               	retlw	83	;'S'
+   328     0058  3454               	retlw	84	;'T'
+   329     0059  3445               	retlw	69	;'E'
+   330     005A  3450               	retlw	80	;'P'
+   331     005B  3420               	retlw	32	;' '
+   332     005C  3400               	retlw	0
+   333     005D                     STR_4:
+   334     005D  344D               	retlw	77	;'M'
+   335     005E  3465               	retlw	101	;'e'
+   336     005F  3464               	retlw	100	;'d'
+   337     0060  3469               	retlw	105	;'i'
+   338     0061  3461               	retlw	97	;'a'
+   339     0062  3420               	retlw	32	;' '
+   340     0063  3476               	retlw	118	;'v'
+   341     0064  3475               	retlw	117	;'u'
+   342     0065  3465               	retlw	101	;'e'
+   343     0066  346C               	retlw	108	;'l'
+   344     0067  3474               	retlw	116	;'t'
+   345     0068  3461               	retlw	97	;'a'
+   346     0069  3420               	retlw	32	;' '
+   347     006A  3449               	retlw	73	;'I'
+   348     006B  345A               	retlw	90	;'Z'
+   349     006C  3451               	retlw	81	;'Q'
+   350     006D  3400               	retlw	0
+   351     006E                     STR_3:
+   352     006E  344D               	retlw	77	;'M'
+   353     006F  3465               	retlw	101	;'e'
+   354     0070  3464               	retlw	100	;'d'
+   355     0071  3469               	retlw	105	;'i'
+   356     0072  3461               	retlw	97	;'a'
+   357     0073  3420               	retlw	32	;' '
+   358     0074  3476               	retlw	118	;'v'
+   359     0075  3475               	retlw	117	;'u'
+   360     0076  3465               	retlw	101	;'e'
+   361     0077  346C               	retlw	108	;'l'
+   362     0078  3474               	retlw	116	;'t'
+   363     0079  3461               	retlw	97	;'a'
+   364     007A  3420               	retlw	32	;' '
+   365     007B  3444               	retlw	68	;'D'
+   366     007C  3445               	retlw	69	;'E'
+   367     007D  3452               	retlw	82	;'R'
+   368     007E  3400               	retlw	0
+   369     007F                     STR_7:
+   370     007F  344D               	retlw	77	;'M'
+   371     0080  346F               	retlw	111	;'o'
+   372     0081  3474               	retlw	116	;'t'
+   373     0082  346F               	retlw	111	;'o'
+   374     0083  3472               	retlw	114	;'r'
+   375     0084  3420               	retlw	32	;' '
+   376     0085  3444               	retlw	68	;'D'
+   377     0086  3445               	retlw	69	;'E'
+   378     0087  3454               	retlw	84	;'T'
+   379     0088  3445               	retlw	69	;'E'
+   380     0089  344E               	retlw	78	;'N'
+   381     008A  3449               	retlw	73	;'I'
+   382     008B  3444               	retlw	68	;'D'
+   383     008C  344F               	retlw	79	;'O'
+   384     008D  3420               	retlw	32	;' '
+   385     008E  3400               	retlw	0
+   386     008F                     STR_6:
+   387     008F  3447               	retlw	71	;'G'
+   388     0090  3469               	retlw	105	;'i'
+   389     0091  3472               	retlw	114	;'r'
+   390     0092  3461               	retlw	97	;'a'
+   391     0093  346E               	retlw	110	;'n'
+   392     0094  3464               	retlw	100	;'d'
+   393     0095  346F               	retlw	111	;'o'
+   394     0096  3420               	retlw	32	;' '
+   395     0097  3449               	retlw	73	;'I'
+   396     0098  345A               	retlw	90	;'Z'
+   397     0099  3451               	retlw	81	;'Q'
+   398     009A  3455               	retlw	85	;'U'
+   399     009B  3449               	retlw	73	;'I'
+   400     009C  3445               	retlw	69	;'E'
+   401     009D  3452               	retlw	82	;'R'
+   402     009E  3400               	retlw	0
+   403                           
+   404                           	psect	cinit
+   405     000F                     start_initialization:	
+   406                           ; #config settings
+   407                           
+   408     000F                     __initialization:
+   409                           
+   410                           ; Initialize objects allocated to BANK0
+   411     000F  120A  118A  23B4  120A  118A  	fcall	__pidataBANK0	;fetch initializer
+   412     0014  00BA               	movwf	__pdataBANK0& (0+127)
+   413                           
+   414                           ; Clear objects allocated to BANK0
+   415     0015  1383               	bcf	3,7	;select IRP bank0
+   416     0016  3020               	movlw	low __pbssBANK0
+   417     0017  0084               	movwf	4
+   418     0018  3038               	movlw	low (__pbssBANK0+24)
+   419     0019  120A  118A  23AC  120A  118A  	fcall	clear_ram0
+   420                           
+   421                           ; Clear objects allocated to COMMON
+   422     001E  01FA               	clrf	__pbssCOMMON& (0+127)
+   423     001F  01FB               	clrf	(__pbssCOMMON+1)& (0+127)
+   424     0020                     end_of_initialization:	
+   425                           ;End of C runtime variable initialization code
+   426                           
+   427     0020                     __end_of__initialization:
+   428     0020  0183               	clrf	3
+   429     0021  120A  118A  2B5F   	ljmp	_main	;jump to C main() function
+   430                           
+   431                           	psect	bssCOMMON
+   432     007A                     __pbssCOMMON:
+   433     007A                     _media_vuelta_izquierda_flag:
+   434     007A                     	ds	1
+   435     007B                     _media_vuelta_derecha_flag:
+   436     007B                     	ds	1
+   437                           
+   438                           	psect	bssBANK0
+   439     0020                     __pbssBANK0:
+   440     0020                     _lcd_buffer:
+   441     0020                     	ds	17
+   442     0031                     _pasos_restantes:
+   443     0031                     	ds	2
+   444     0033                     halfStepIzquierda@paso:
+   445     0033                     	ds	1
+   446     0034                     halfStepDerecha@paso:
+   447     0034                     	ds	1
+   448     0035                     fullStepIzquierda@paso:
+   449     0035                     	ds	1
+   450     0036                     fullStepDerecha@paso:
+   451     0036                     	ds	1
+   452     0037                     _timer_flag:
+   453     0037                     	ds	1
+   454                           
+   455                           	psect	dataBANK0
+   456     003A                     __pdataBANK0:
+   457     003A                     Jogging@last_jog_button:
+   458     003A                     	ds	1
+   459                           
+   460                           	psect	clrtext
+   461     03AC                     clear_ram0:	
+   462                           ;	Called with FSR containing the base address, and
+   463                           ;	W with the last address+1
+   464                           
+   465     03AC  0064               	clrwdt	;clear the watchdog before getting into this loop
+   466     03AD                     clrloop0:
+   467     03AD  0180               	clrf	0	;clear RAM location pointed to by FSR
+   468     03AE  0A84               	incf	4,f	;increment pointer
+   469     03AF  0604               	xorwf	4,w	;XOR with final address
+   470     03B0  1903               	btfsc	3,2	;have we reached the end yet?
+   471     03B1  3400               	retlw	0	;all done for this memory range, return
+   472     03B2  0604               	xorwf	4,w	;XOR again to restore value
+   473     03B3  2BAD               	goto	clrloop0	;do the next byte
+   474                           
+   475                           	psect	cstackCOMMON
+   476     0070                     __pcstackCOMMON:
+   477     0070                     ?_configPIC:
+   478     0070                     ?_ISR:	
+   479                           ; 1 bytes @ 0x0
+   480                           
+   481     0070                     ?_LCD_PulseEnable:	
+   482                           ; 1 bytes @ 0x0
+   483                           
+   484     0070                     ?_LCD_SendNibble:	
+   485                           ; 1 bytes @ 0x0
+   486                           
+   487     0070                     ?_LCD_Init:	
+   488                           ; 1 bytes @ 0x0
+   489                           
+   490     0070                     ?_LCD_UpdateDisplay:	
+   491                           ; 1 bytes @ 0x0
+   492                           
+   493     0070                     ?_fullStepDerecha:	
+   494                           ; 1 bytes @ 0x0
+   495                           
+   496     0070                     ?_fullStepIzquierda:	
+   497                           ; 1 bytes @ 0x0
+   498                           
+   499     0070                     ?_halfStepDerecha:	
+   500                           ; 1 bytes @ 0x0
+   501                           
+   502     0070                     ?_halfStepIzquierda:	
+   503                           ; 1 bytes @ 0x0
+   504                           
+   505     0070                     ?_Jogging:	
+   506                           ; 1 bytes @ 0x0
+   507                           
+   508     0070                     ?_main:	
+   509                           ; 1 bytes @ 0x0
+   510                           
+   511     0070                     ??_ISR:	
+   512                           ; 1 bytes @ 0x0
+   513                           
+   514                           
+   515                           ; 1 bytes @ 0x0
+   516     0070                     	ds	2
+   517     0072                     Jogging@current_jog_button:
+   518     0072                     ??_configPIC:	
+   519                           ; 1 bytes @ 0x2
+   520                           
+   521     0072                     ??_LCD_PulseEnable:	
+   522                           ; 1 bytes @ 0x2
+   523                           
+   524     0072                     ??_fullStepDerecha:	
+   525                           ; 1 bytes @ 0x2
+   526                           
+   527     0072                     ??_fullStepIzquierda:	
+   528                           ; 1 bytes @ 0x2
+   529                           
+   530     0072                     ??_halfStepDerecha:	
+   531                           ; 1 bytes @ 0x2
+   532                           
+   533     0072                     ??_halfStepIzquierda:	
+   534                           ; 1 bytes @ 0x2
+   535                           
+   536     0072                     ??_Jogging:	
+   537                           ; 1 bytes @ 0x2
+   538                           
+   539                           
+   540                           ; 1 bytes @ 0x2
+   541     0072                     	ds	1
+   542     0073                     ??_LCD_SendNibble:
+   543                           
+   544                           ; 1 bytes @ 0x3
+   545     0073                     	ds	1
+   546     0074                     LCD_SendNibble@nibble:
+   547                           
+   548                           ; 1 bytes @ 0x4
+   549     0074                     	ds	1
+   550     0075                     ?_LCD_SendByte:
+   551     0075                     LCD_SendByte@isData:	
+   552                           ; 1 bytes @ 0x5
+   553                           
+   554                           
+   555                           ; 1 bytes @ 0x5
+   556     0075                     	ds	1
+   557     0076                     ??_LCD_SendByte:
+   558                           
+   559                           ; 1 bytes @ 0x6
+   560     0076                     	ds	2
+   561     0078                     LCD_SendByte@byte:
+   562                           
+   563                           ; 1 bytes @ 0x8
+   564     0078                     	ds	1
+   565     0079                     ?_LCD_SetCursor:
+   566     0079                     ?_LCD_PrintString:	
+   567                           ; 1 bytes @ 0x9
+   568                           
+   569     0079                     LCD_SetCursor@col:	
+   570                           ; 1 bytes @ 0x9
+   571                           
+   572     0079                     LCD_PrintString@str:	
+   573                           ; 1 bytes @ 0x9
+   574                           
+   575                           
+   576                           ; 1 bytes @ 0x9
+   577     0079                     	ds	1
+   578     007A                     ??_LCD_SetCursor:
+   579     007A                     ??_LCD_PrintString:	
+   580                           ; 1 bytes @ 0xA
+   581                           
+   582     007A                     ??_LCD_UpdateDisplay:	
+   583                           ; 1 bytes @ 0xA
+   584                           
+   585     007A                     ??_main:	
+   586                           ; 1 bytes @ 0xA
+   587                           
+   588                           
+   589                           	psect	cstackBANK0
+   590     0038                     __pcstackBANK0:	
+   591                           ; 1 bytes @ 0xA
+   592                           
+   593     0038                     LCD_SetCursor@row:
+   594     0038                     ??_LCD_Init:	
+   595                           ; 1 bytes @ 0x0
+   596                           
+   597                           
+   598                           ; 1 bytes @ 0x0
+   599     0038                     	ds	1
+   600     0039                     LCD_SetCursor@address:
+   601                           
+   602                           ; 1 bytes @ 0x1
+   603     0039                     	ds	1
+   604                           
+   605                           	psect	maintext
+   606     035F                     __pmaintext:	
+   607 ;;
+   608 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   609 ;;
+   610 ;; *************** function _main *****************
+   611 ;; Defined at:
+   612 ;;		line 255 in file "JOGGING.c"
+   613 ;; Parameters:    Size  Location     Type
+   614 ;;		None
+   615 ;; Auto vars:     Size  Location     Type
+   616 ;;		None
+   617 ;; Return value:  Size  Location     Type
+   618 ;;                  1    wreg      void 
+   619 ;; Registers used:
+   620 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   621 ;; Tracked objects:
+   622 ;;		On entry : B00/0
+   623 ;;		On exit  : 0/0
+   624 ;;		Unchanged: 0/0
+   625 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   626 ;;      Params:         0       0       0       0       0
+   627 ;;      Locals:         0       0       0       0       0
+   628 ;;      Temps:          0       0       0       0       0
+   629 ;;      Totals:         0       0       0       0       0
+   630 ;;Total ram usage:        0 bytes
+   631 ;; Hardware stack levels required when called: 6
+   632 ;; This function calls:
+   633 ;;		_Jogging
+   634 ;;		_LCD_Init
+   635 ;;		_LCD_UpdateDisplay
+   636 ;;		_configPIC
+   637 ;; This function is called by:
+   638 ;;		Startup code after reset
+   639 ;; This function uses a non-reentrant model
+   640 ;;
+   641                           
+   642     035F                     _main:	
+   643                           ;psect for function _main
+   644                           
+   645     035F                     l1170:	
+   646                           ;incstack = 0
+   647                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   648                           
+   649                           
+   650                           ;JOGGING.c: 256:     configPIC();
+   651     035F  120A  118A  2323  120A  118A  	fcall	_configPIC
+   652     0364                     l1172:
+   653                           
+   654                           ;JOGGING.c: 257:     LCD_Init();
+   655     0364  120A  118A  2106  120A  118A  	fcall	_LCD_Init
+   656     0369                     l1174:
+   657                           
+   658                           ;JOGGING.c: 260:         Jogging();
+   659     0369  120A  118A  2165  120A  118A  	fcall	_Jogging
+   660     036E                     l1176:
+   661                           
+   662                           ;JOGGING.c: 261:         LCD_UpdateDisplay();
+   663     036E  120A  118A  209F  120A  118A  	fcall	_LCD_UpdateDisplay
+   664     0373  2B69               	goto	l1174
+   665     0374  120A  118A  280C   	ljmp	start
+   666     0377                     __end_of_main:
+   667                           
+   668                           	psect	text1
+   669     0323                     __ptext1:	
+   670 ;; *************** function _configPIC *****************
+   671 ;; Defined at:
+   672 ;;		line 46 in file "JOGGING.c"
+   673 ;; Parameters:    Size  Location     Type
+   674 ;;		None
+   675 ;; Auto vars:     Size  Location     Type
+   676 ;;		None
+   677 ;; Return value:  Size  Location     Type
+   678 ;;                  1    wreg      void 
+   679 ;; Registers used:
+   680 ;;		status,2
+   681 ;; Tracked objects:
+   682 ;;		On entry : 0/0
+   683 ;;		On exit  : 0/0
+   684 ;;		Unchanged: 0/0
+   685 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   686 ;;      Params:         0       0       0       0       0
+   687 ;;      Locals:         0       0       0       0       0
+   688 ;;      Temps:          0       0       0       0       0
+   689 ;;      Totals:         0       0       0       0       0
+   690 ;;Total ram usage:        0 bytes
+   691 ;; Hardware stack levels used: 1
+   692 ;; Hardware stack levels required when called: 1
+   693 ;; This function calls:
+   694 ;;		Nothing
+   695 ;; This function is called by:
+   696 ;;		_main
+   697 ;; This function uses a non-reentrant model
+   698 ;;
+   699                           
+   700     0323                     _configPIC:	
+   701                           ;psect for function _configPIC
+   702                           
+   703     0323                     l804:	
+   704                           ;incstack = 0
+   705                           ; Regs used in _configPIC: [status,2]
+   706                           
+   707                           
+   708                           ;JOGGING.c: 47:     OSCCON = 0b01100010;
+   709     0323  3062               	movlw	98
+   710     0324  1683               	bsf	3,5	;RP0=1, select bank1
+   711     0325  1303               	bcf	3,6	;RP1=0, select bank1
+   712     0326  008F               	movwf	15	;volatile
+   713     0327                     l806:
+   714                           
+   715                           ;JOGGING.c: 48:     ANSEL = ANSELH = 0;
+   716     0327  1683               	bsf	3,5	;RP0=1, select bank3
+   717     0328  1703               	bsf	3,6	;RP1=1, select bank3
+   718     0329  0189               	clrf	9	;volatile
+   719     032A  0188               	clrf	8	;volatile
+   720     032B                     l808:
+   721                           
+   722                           ;JOGGING.c: 49:     TRISB = 0xFF;
+   723     032B  30FF               	movlw	255
+   724     032C  1683               	bsf	3,5	;RP0=1, select bank1
+   725     032D  1303               	bcf	3,6	;RP1=0, select bank1
+   726     032E  0086               	movwf	6	;volatile
+   727                           
+   728                           ;JOGGING.c: 50:     TRISD = 0x00;
+   729     032F  0188               	clrf	8	;volatile
+   730                           
+   731                           ;JOGGING.c: 51:     TRISC = 0x00;
+   732     0330  0187               	clrf	7	;volatile
+   733                           
+   734                           ;JOGGING.c: 52:     PORTB = PORTD = PORTC = 0x00;
+   735     0331  1283               	bcf	3,5	;RP0=0, select bank0
+   736     0332  1303               	bcf	3,6	;RP1=0, select bank0
+   737     0333  0187               	clrf	7	;volatile
+   738     0334  0188               	clrf	8	;volatile
+   739     0335  0186               	clrf	6	;volatile
+   740     0336                     l810:
+   741                           
+   742                           ;JOGGING.c: 55:     OPTION_REG = 0b00000111;
+   743     0336  3007               	movlw	7
+   744     0337  1683               	bsf	3,5	;RP0=1, select bank1
+   745     0338  1303               	bcf	3,6	;RP1=0, select bank1
+   746     0339  0081               	movwf	1	;volatile
+   747     033A                     l812:
+   748                           
+   749                           ;JOGGING.c: 56:     TMR0 = 100;
+   750     033A  3064               	movlw	100
+   751     033B  1283               	bcf	3,5	;RP0=0, select bank0
+   752     033C  1303               	bcf	3,6	;RP1=0, select bank0
+   753     033D  0081               	movwf	1	;volatile
+   754     033E                     l814:
+   755                           
+   756                           ;JOGGING.c: 57:     INTCONbits.T0IE = 1;
+   757     033E  168B               	bsf	11,5	;volatile
+   758     033F                     l816:
+   759                           
+   760                           ;JOGGING.c: 58:     INTCONbits.GIE = 1;
+   761     033F  178B               	bsf	11,7	;volatile
+   762     0340                     l67:
+   763     0340  0008               	return
+   764     0341                     __end_of_configPIC:
+   765                           
+   766                           	psect	text2
+   767     009F                     __ptext2:	
+   768 ;; *************** function _LCD_UpdateDisplay *****************
+   769 ;; Defined at:
+   770 ;;		line 143 in file "JOGGING.c"
+   771 ;; Parameters:    Size  Location     Type
+   772 ;;		None
+   773 ;; Auto vars:     Size  Location     Type
+   774 ;;		None
+   775 ;; Return value:  Size  Location     Type
+   776 ;;                  1    wreg      void 
+   777 ;; Registers used:
+   778 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   779 ;; Tracked objects:
+   780 ;;		On entry : 0/0
+   781 ;;		On exit  : 0/0
+   782 ;;		Unchanged: 0/0
+   783 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   784 ;;      Params:         0       0       0       0       0
+   785 ;;      Locals:         0       0       0       0       0
+   786 ;;      Temps:          0       0       0       0       0
+   787 ;;      Totals:         0       0       0       0       0
+   788 ;;Total ram usage:        0 bytes
+   789 ;; Hardware stack levels used: 1
+   790 ;; Hardware stack levels required when called: 5
+   791 ;; This function calls:
+   792 ;;		_LCD_PrintString
+   793 ;;		_LCD_SetCursor
+   794 ;; This function is called by:
+   795 ;;		_main
+   796 ;; This function uses a non-reentrant model
+   797 ;;
+   798                           
+   799     009F                     _LCD_UpdateDisplay:	
+   800                           ;psect for function _LCD_UpdateDisplay
+   801                           
+   802     009F                     l1138:	
+   803                           ;incstack = 0
+   804                           ; Regs used in _LCD_UpdateDisplay: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   805                           
+   806                           
+   807                           ;JOGGING.c: 144:     LCD_SetCursor(0, 0);
+   808     009F  01F9               	clrf	LCD_SetCursor@col
+   809     00A0  3000               	movlw	0
+   810     00A1  120A  118A  2377  120A  118A  	fcall	_LCD_SetCursor
+   811     00A6                     l1140:
+   812                           
+   813                           ;JOGGING.c: 147:     if(RB0) {
+   814     00A6  1283               	bcf	3,5	;RP0=0, select bank0
+   815     00A7  1303               	bcf	3,6	;RP1=0, select bank0
+   816     00A8  1C06               	btfss	6,0	;volatile
+   817     00A9  28AB               	goto	u821
+   818     00AA  28AC               	goto	u820
+   819     00AB                     u821:
+   820     00AB  28B4               	goto	l1144
+   821     00AC                     u820:
+   822     00AC                     l1142:
+   823                           
+   824                           ;JOGGING.c: 148:         LCD_PrintString("Modo: FULL STEP ");
+   825     00AC  3023               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
+   826     00AD  00F9               	movwf	LCD_PrintString@str
+   827     00AE  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   828                           
+   829                           ;JOGGING.c: 149:     } else {
+   830     00B3  28BB               	goto	l1146
+   831     00B4                     l1144:
+   832                           
+   833                           ;JOGGING.c: 150:         LCD_PrintString("Modo: HALF STEP ");
+   834     00B4  3012               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
+   835     00B5  00F9               	movwf	LCD_PrintString@str
+   836     00B6  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   837     00BB                     l1146:
+   838                           
+   839                           ;JOGGING.c: 153:     LCD_SetCursor(1, 0);
+   840     00BB  01F9               	clrf	LCD_SetCursor@col
+   841     00BC  3001               	movlw	1
+   842     00BD  120A  118A  2377  120A  118A  	fcall	_LCD_SetCursor
+   843     00C2                     l1148:
+   844                           
+   845                           ;JOGGING.c: 156:     if(media_vuelta_derecha_flag) {
+   846     00C2  087B               	movf	_media_vuelta_derecha_flag,w	;volatile
+   847     00C3  1903               	btfsc	3,2
+   848     00C4  28C6               	goto	u831
+   849     00C5  28C7               	goto	u830
+   850     00C6                     u831:
+   851     00C6  28CF               	goto	l1152
+   852     00C7                     u830:
+   853     00C7                     l1150:
+   854                           
+   855                           ;JOGGING.c: 157:         LCD_PrintString("Media vuelta DER");
+   856     00C7  3045               	movlw	(low ((STR_3-__stringbase)| (0+32768)))& (0+255)
+   857     00C8  00F9               	movwf	LCD_PrintString@str
+   858     00C9  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   859                           
+   860                           ;JOGGING.c: 158:     }
+   861     00CE  2905               	goto	l116
+   862     00CF                     l1152:
+   863     00CF  087A               	movf	_media_vuelta_izquierda_flag,w	;volatile
+   864     00D0  1903               	btfsc	3,2
+   865     00D1  28D3               	goto	u841
+   866     00D2  28D4               	goto	u840
+   867     00D3                     u841:
+   868     00D3  28DC               	goto	l110
+   869     00D4                     u840:
+   870     00D4                     l1154:
+   871                           
+   872                           ;JOGGING.c: 160:         LCD_PrintString("Media vuelta IZQ");
+   873     00D4  3034               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
+   874     00D5  00F9               	movwf	LCD_PrintString@str
+   875     00D6  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   876                           
+   877                           ;JOGGING.c: 161:     }
+   878     00DB  2905               	goto	l116
+   879     00DC                     l110:	
+   880                           ;JOGGING.c: 162:     else if(!RB1 && RB2) {
+   881                           
+   882     00DC  1283               	bcf	3,5	;RP0=0, select bank0
+   883     00DD  1303               	bcf	3,6	;RP1=0, select bank0
+   884     00DE  1886               	btfsc	6,1	;volatile
+   885     00DF  28E1               	goto	u851
+   886     00E0  28E2               	goto	u850
+   887     00E1                     u851:
+   888     00E1  28EE               	goto	l112
+   889     00E2                     u850:
+   890     00E2                     l1156:
+   891     00E2  1D06               	btfss	6,2	;volatile
+   892     00E3  28E5               	goto	u861
+   893     00E4  28E6               	goto	u860
+   894     00E5                     u861:
+   895     00E5  28EE               	goto	l112
+   896     00E6                     u860:
+   897     00E6                     l1158:
+   898                           
+   899                           ;JOGGING.c: 163:         LCD_PrintString("Girando DERECHA ");
+   900     00E6  3001               	movlw	(low ((STR_5-__stringbase)| (0+32768)))& (0+255)
+   901     00E7  00F9               	movwf	LCD_PrintString@str
+   902     00E8  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   903                           
+   904                           ;JOGGING.c: 164:     }
+   905     00ED  2905               	goto	l116
+   906     00EE                     l112:	
+   907                           ;JOGGING.c: 165:     else if(RB1 && !RB2) {
+   908                           
+   909     00EE  1C86               	btfss	6,1	;volatile
+   910     00EF  28F1               	goto	u871
+   911     00F0  28F2               	goto	u870
+   912     00F1                     u871:
+   913     00F1  28FE               	goto	l1164
+   914     00F2                     u870:
+   915     00F2                     l1160:
+   916     00F2  1906               	btfsc	6,2	;volatile
+   917     00F3  28F5               	goto	u881
+   918     00F4  28F6               	goto	u880
+   919     00F5                     u881:
+   920     00F5  28FE               	goto	l1164
+   921     00F6                     u880:
+   922     00F6                     l1162:
+   923                           
+   924                           ;JOGGING.c: 166:         LCD_PrintString("Girando IZQUIER");
+   925     00F6  3066               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
+   926     00F7  00F9               	movwf	LCD_PrintString@str
+   927     00F8  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   928                           
+   929                           ;JOGGING.c: 167:     }
+   930     00FD  2905               	goto	l116
+   931     00FE                     l1164:
+   932                           
+   933                           ;JOGGING.c: 169:         LCD_PrintString("Motor DETENIDO ");
+   934     00FE  3056               	movlw	(low ((STR_7-__stringbase)| (0+32768)))& (0+255)
+   935     00FF  00F9               	movwf	LCD_PrintString@str
+   936     0100  120A  118A  2341  120A  118A  	fcall	_LCD_PrintString
+   937     0105                     l116:
+   938     0105  0008               	return
+   939     0106                     __end_of_LCD_UpdateDisplay:
+   940                           
+   941                           	psect	text3
+   942     0377                     __ptext3:	
+   943 ;; *************** function _LCD_SetCursor *****************
+   944 ;; Defined at:
+   945 ;;		line 128 in file "JOGGING.c"
+   946 ;; Parameters:    Size  Location     Type
+   947 ;;  row             1    wreg     unsigned char 
+   948 ;;  col             1    9[COMMON] unsigned char 
+   949 ;; Auto vars:     Size  Location     Type
+   950 ;;  row             1    0[BANK0 ] unsigned char 
+   951 ;;  address         1    1[BANK0 ] unsigned char 
+   952 ;; Return value:  Size  Location     Type
+   953 ;;                  1    wreg      void 
+   954 ;; Registers used:
+   955 ;;		wreg, status,2, status,0, pclath, cstack
+   956 ;; Tracked objects:
+   957 ;;		On entry : 0/0
+   958 ;;		On exit  : 0/0
+   959 ;;		Unchanged: 0/0
+   960 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   961 ;;      Params:         1       0       0       0       0
+   962 ;;      Locals:         0       2       0       0       0
+   963 ;;      Temps:          0       0       0       0       0
+   964 ;;      Totals:         1       2       0       0       0
+   965 ;;Total ram usage:        3 bytes
+   966 ;; Hardware stack levels used: 1
+   967 ;; Hardware stack levels required when called: 4
+   968 ;; This function calls:
+   969 ;;		_LCD_SendByte
+   970 ;; This function is called by:
+   971 ;;		_LCD_UpdateDisplay
+   972 ;; This function uses a non-reentrant model
+   973 ;;
+   974                           
+   975     0377                     _LCD_SetCursor:	
+   976                           ;psect for function _LCD_SetCursor
+   977                           
+   978                           
+   979                           ;incstack = 0
+   980                           ; Regs used in _LCD_SetCursor: [wreg+status,2+status,0+pclath+cstack]
+   981                           ;LCD_SetCursor@row stored from wreg
+   982     0377  1283               	bcf	3,5	;RP0=0, select bank0
+   983     0378  1303               	bcf	3,6	;RP1=0, select bank0
+   984     0379  00B8               	movwf	LCD_SetCursor@row
+   985     037A                     l1096:
+   986                           
+   987                           ;JOGGING.c: 129:     unsigned char address;;JOGGING.c: 130:     if(row == 0)
+   988     037A  0838               	movf	LCD_SetCursor@row,w
+   989     037B  1D03               	btfss	3,2
+   990     037C  2B7E               	goto	u801
+   991     037D  2B7F               	goto	u800
+   992     037E                     u801:
+   993     037E  2B83               	goto	l1100
+   994     037F                     u800:
+   995     037F                     l1098:
+   996                           
+   997                           ;JOGGING.c: 131:         address = 0x80 + col;
+   998     037F  0879               	movf	LCD_SetCursor@col,w
+   999     0380  3E80               	addlw	128
+  1000     0381  00B9               	movwf	LCD_SetCursor@address
+  1001     0382  2B86               	goto	l1102
+  1002     0383                     l1100:
+  1003                           
+  1004                           ;JOGGING.c: 133:         address = 0xC0 + col;
+  1005     0383  0879               	movf	LCD_SetCursor@col,w
+  1006     0384  3EC0               	addlw	192
+  1007     0385  00B9               	movwf	LCD_SetCursor@address
+  1008     0386                     l1102:
+  1009                           
+  1010                           ;JOGGING.c: 134:     LCD_SendByte(address, 0);
+  1011     0386  01F5               	clrf	LCD_SendByte@isData
+  1012     0387  0839               	movf	LCD_SetCursor@address,w
+  1013     0388  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1014     038D                     l97:
+  1015     038D  0008               	return
+  1016     038E                     __end_of_LCD_SetCursor:
+  1017                           
+  1018                           	psect	text4
+  1019     0341                     __ptext4:	
+  1020 ;; *************** function _LCD_PrintString *****************
+  1021 ;; Defined at:
+  1022 ;;		line 137 in file "JOGGING.c"
+  1023 ;; Parameters:    Size  Location     Type
+  1024 ;;  str             1    9[COMMON] PTR const unsigned char 
+  1025 ;;		 -> STR_7(16), STR_6(16), STR_5(17), STR_4(17), 
+  1026 ;;		 -> STR_3(17), STR_2(17), STR_1(17), 
+  1027 ;; Auto vars:     Size  Location     Type
+  1028 ;;		None
+  1029 ;; Return value:  Size  Location     Type
+  1030 ;;                  1    wreg      void 
+  1031 ;; Registers used:
+  1032 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1033 ;; Tracked objects:
+  1034 ;;		On entry : 0/0
+  1035 ;;		On exit  : 0/0
+  1036 ;;		Unchanged: 0/0
+  1037 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1038 ;;      Params:         1       0       0       0       0
+  1039 ;;      Locals:         0       0       0       0       0
+  1040 ;;      Temps:          0       0       0       0       0
+  1041 ;;      Totals:         1       0       0       0       0
+  1042 ;;Total ram usage:        1 bytes
+  1043 ;; Hardware stack levels used: 1
+  1044 ;; Hardware stack levels required when called: 4
+  1045 ;; This function calls:
+  1046 ;;		_LCD_SendByte
+  1047 ;; This function is called by:
+  1048 ;;		_LCD_UpdateDisplay
+  1049 ;; This function uses a non-reentrant model
+  1050 ;;
+  1051                           
+  1052     0341                     _LCD_PrintString:	
+  1053                           ;psect for function _LCD_PrintString
+  1054                           
+  1055     0341                     l1104:	
+  1056                           ;incstack = 0
+  1057                           ; Regs used in _LCD_PrintString: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1058                           
+  1059                           
+  1060                           ;JOGGING.c: 138:     while(*str) {
+  1061     0341  2B52               	goto	l1110
+  1062     0342                     l1106:
+  1063                           
+  1064                           ;JOGGING.c: 139:         LCD_SendByte(*str++, 1);
+  1065     0342  01F5               	clrf	LCD_SendByte@isData
+  1066     0343  0AF5               	incf	LCD_SendByte@isData,f
+  1067     0344  0879               	movf	LCD_PrintString@str,w
+  1068     0345  0084               	movwf	4
+  1069     0346  120A  118A  2024  120A  118A  	fcall	stringdir
+  1070     034B  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1071     0350                     l1108:
+  1072     0350  3001               	movlw	1
+  1073     0351  07F9               	addwf	LCD_PrintString@str,f
+  1074     0352                     l1110:
+  1075                           
+  1076                           ;JOGGING.c: 138:     while(*str) {
+  1077     0352  0879               	movf	LCD_PrintString@str,w
+  1078     0353  0084               	movwf	4
+  1079     0354  120A  118A  2024  120A  118A  	fcall	stringdir
+  1080     0359  3A00               	xorlw	0
+  1081     035A  1D03               	skipz
+  1082     035B  2B5D               	goto	u811
+  1083     035C  2B5E               	goto	u810
+  1084     035D                     u811:
+  1085     035D  2B42               	goto	l1106
+  1086     035E                     u810:
+  1087     035E                     l103:
+  1088     035E  0008               	return
+  1089     035F                     __end_of_LCD_PrintString:
+  1090                           
+  1091                           	psect	text5
+  1092     0106                     __ptext5:	
+  1093 ;; *************** function _LCD_Init *****************
+  1094 ;; Defined at:
+  1095 ;;		line 100 in file "JOGGING.c"
+  1096 ;; Parameters:    Size  Location     Type
+  1097 ;;		None
+  1098 ;; Auto vars:     Size  Location     Type
+  1099 ;;		None
+  1100 ;; Return value:  Size  Location     Type
+  1101 ;;                  1    wreg      void 
+  1102 ;; Registers used:
+  1103 ;;		wreg, status,2, status,0, pclath, cstack
+  1104 ;; Tracked objects:
+  1105 ;;		On entry : 0/0
+  1106 ;;		On exit  : 0/0
+  1107 ;;		Unchanged: 0/0
+  1108 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1109 ;;      Params:         0       0       0       0       0
+  1110 ;;      Locals:         0       0       0       0       0
+  1111 ;;      Temps:          0       2       0       0       0
+  1112 ;;      Totals:         0       2       0       0       0
+  1113 ;;Total ram usage:        2 bytes
+  1114 ;; Hardware stack levels used: 1
+  1115 ;; Hardware stack levels required when called: 4
+  1116 ;; This function calls:
+  1117 ;;		_LCD_SendByte
+  1118 ;;		_LCD_SendNibble
+  1119 ;; This function is called by:
+  1120 ;;		_main
+  1121 ;; This function uses a non-reentrant model
+  1122 ;;
+  1123                           
+  1124     0106                     _LCD_Init:	
+  1125                           ;psect for function _LCD_Init
+  1126                           
+  1127     0106                     l1112:	
+  1128                           ;incstack = 0
+  1129                           ; Regs used in _LCD_Init: [wreg+status,2+status,0+pclath+cstack]
+  1130                           
+  1131                           
+  1132                           ;JOGGING.c: 102:     _delay((unsigned long)((15)*(4000000/4000.0)));
+  1133     0106  3014               	movlw	20
+  1134     0107  1283               	bcf	3,5	;RP0=0, select bank0
+  1135     0108  1303               	bcf	3,6	;RP1=0, select bank0
+  1136     0109  00B9               	movwf	??_LCD_Init+1
+  1137     010A  3079               	movlw	121
+  1138     010B  00B8               	movwf	??_LCD_Init
+  1139     010C                     u897:
+  1140     010C  0BB8               	decfsz	??_LCD_Init,f
+  1141     010D  290C               	goto	u897
+  1142     010E  0BB9               	decfsz	??_LCD_Init+1,f
+  1143     010F  290C               	goto	u897
+  1144     0110                     l1114:
+  1145                           
+  1146                           ;JOGGING.c: 105:     RC0 = 0;
+  1147     0110  1283               	bcf	3,5	;RP0=0, select bank0
+  1148     0111  1303               	bcf	3,6	;RP1=0, select bank0
+  1149     0112  1007               	bcf	7,0	;volatile
+  1150     0113                     l1116:
+  1151                           
+  1152                           ;JOGGING.c: 106:     RC1 = 0;
+  1153     0113  1087               	bcf	7,1	;volatile
+  1154     0114                     l1118:
+  1155                           
+  1156                           ;JOGGING.c: 108:     LCD_SendNibble(0x03);
+  1157     0114  3003               	movlw	3
+  1158     0115  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1159     011A                     l1120:
+  1160                           
+  1161                           ;JOGGING.c: 109:     _delay((unsigned long)((5)*(4000000/4000.0)));
+  1162     011A  3007               	movlw	7
+  1163     011B  1283               	bcf	3,5	;RP0=0, select bank0
+  1164     011C  1303               	bcf	3,6	;RP1=0, select bank0
+  1165     011D  00B9               	movwf	??_LCD_Init+1
+  1166     011E  307C               	movlw	124
+  1167     011F  00B8               	movwf	??_LCD_Init
+  1168     0120                     u907:
+  1169     0120  0BB8               	decfsz	??_LCD_Init,f
+  1170     0121  2920               	goto	u907
+  1171     0122  0BB9               	decfsz	??_LCD_Init+1,f
+  1172     0123  2920               	goto	u907
+  1173     0124  0000               	nop
+  1174                           
+  1175                           ;JOGGING.c: 110:     LCD_SendNibble(0x03);
+  1176     0125  3003               	movlw	3
+  1177     0126  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1178     012B                     l1122:
+  1179                           
+  1180                           ;JOGGING.c: 111:     _delay((unsigned long)((100)*(4000000/4000000.0)));
+  1181     012B  3020               	movlw	32
+  1182     012C  1283               	bcf	3,5	;RP0=0, select bank0
+  1183     012D  1303               	bcf	3,6	;RP1=0, select bank0
+  1184     012E  00B8               	movwf	??_LCD_Init
+  1185     012F                     u917:
+  1186     012F  0BB8               	decfsz	??_LCD_Init,f
+  1187     0130  292F               	goto	u917
+  1188     0131  0000               	nop
+  1189     0132                     l1124:
+  1190                           
+  1191                           ;JOGGING.c: 112:     LCD_SendNibble(0x03);
+  1192     0132  3003               	movlw	3
+  1193     0133  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1194     0138                     l1126:
+  1195                           
+  1196                           ;JOGGING.c: 113:     LCD_SendNibble(0x02);
+  1197     0138  3002               	movlw	2
+  1198     0139  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1199     013E                     l1128:
+  1200                           
+  1201                           ;JOGGING.c: 116:     LCD_SendByte(0x28, 0);
+  1202     013E  01F5               	clrf	LCD_SendByte@isData
+  1203     013F  3028               	movlw	40
+  1204     0140  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1205     0145                     l1130:
+  1206                           
+  1207                           ;JOGGING.c: 117:     LCD_SendByte(0x0C, 0);
+  1208     0145  01F5               	clrf	LCD_SendByte@isData
+  1209     0146  300C               	movlw	12
+  1210     0147  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1211     014C                     l1132:
+  1212                           
+  1213                           ;JOGGING.c: 118:     LCD_SendByte(0x06, 0);
+  1214     014C  01F5               	clrf	LCD_SendByte@isData
+  1215     014D  3006               	movlw	6
+  1216     014E  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1217     0153                     l1134:
+  1218                           
+  1219                           ;JOGGING.c: 119:     LCD_SendByte(0x01, 0);
+  1220     0153  01F5               	clrf	LCD_SendByte@isData
+  1221     0154  3001               	movlw	1
+  1222     0155  120A  118A  2293  120A  118A  	fcall	_LCD_SendByte
+  1223     015A                     l1136:
+  1224                           
+  1225                           ;JOGGING.c: 120:     _delay((unsigned long)((2)*(4000000/4000.0)));
+  1226     015A  3003               	movlw	3
+  1227     015B  1283               	bcf	3,5	;RP0=0, select bank0
+  1228     015C  1303               	bcf	3,6	;RP1=0, select bank0
+  1229     015D  00B9               	movwf	??_LCD_Init+1
+  1230     015E  3097               	movlw	151
+  1231     015F  00B8               	movwf	??_LCD_Init
+  1232     0160                     u927:
+  1233     0160  0BB8               	decfsz	??_LCD_Init,f
+  1234     0161  2960               	goto	u927
+  1235     0162  0BB9               	decfsz	??_LCD_Init+1,f
+  1236     0163  2960               	goto	u927
+  1237     0164                     l89:
+  1238     0164  0008               	return
+  1239     0165                     __end_of_LCD_Init:
+  1240                           
+  1241                           	psect	text6
+  1242     0293                     __ptext6:	
+  1243 ;; *************** function _LCD_SendByte *****************
+  1244 ;; Defined at:
+  1245 ;;		line 85 in file "JOGGING.c"
+  1246 ;; Parameters:    Size  Location     Type
+  1247 ;;  byte            1    wreg     unsigned char 
+  1248 ;;  isData          1    5[COMMON] unsigned char 
+  1249 ;; Auto vars:     Size  Location     Type
+  1250 ;;  byte            1    8[COMMON] unsigned char 
+  1251 ;; Return value:  Size  Location     Type
+  1252 ;;                  1    wreg      void 
+  1253 ;; Registers used:
+  1254 ;;		wreg, status,2, status,0, pclath, cstack
+  1255 ;; Tracked objects:
+  1256 ;;		On entry : 0/0
+  1257 ;;		On exit  : 0/0
+  1258 ;;		Unchanged: 0/0
+  1259 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1260 ;;      Params:         1       0       0       0       0
+  1261 ;;      Locals:         1       0       0       0       0
+  1262 ;;      Temps:          2       0       0       0       0
+  1263 ;;      Totals:         4       0       0       0       0
+  1264 ;;Total ram usage:        4 bytes
+  1265 ;; Hardware stack levels used: 1
+  1266 ;; Hardware stack levels required when called: 3
+  1267 ;; This function calls:
+  1268 ;;		_LCD_SendNibble
+  1269 ;; This function is called by:
+  1270 ;;		_LCD_Init
+  1271 ;;		_LCD_SetCursor
+  1272 ;;		_LCD_PrintString
+  1273 ;;		_LCD_Clear
+  1274 ;; This function uses a non-reentrant model
+  1275 ;;
+  1276                           
+  1277     0293                     _LCD_SendByte:	
+  1278                           ;psect for function _LCD_SendByte
+  1279                           
+  1280                           
+  1281                           ;incstack = 0
+  1282                           ; Regs used in _LCD_SendByte: [wreg+status,2+status,0+pclath+cstack]
+  1283                           ;LCD_SendByte@byte stored from wreg
+  1284     0293  00F8               	movwf	LCD_SendByte@byte
+  1285     0294                     l1084:
+  1286                           
+  1287                           ;JOGGING.c: 86:     RC0 = isData;
+  1288     0294  1875               	btfsc	LCD_SendByte@isData,0
+  1289     0295  2A97               	goto	u751
+  1290     0296  2A9B               	goto	u750
+  1291     0297                     u751:
+  1292     0297  1283               	bcf	3,5	;RP0=0, select bank0
+  1293     0298  1303               	bcf	3,6	;RP1=0, select bank0
+  1294     0299  1407               	bsf	7,0	;volatile
+  1295     029A  2A9E               	goto	u764
+  1296     029B                     u750:
+  1297     029B  1283               	bcf	3,5	;RP0=0, select bank0
+  1298     029C  1303               	bcf	3,6	;RP1=0, select bank0
+  1299     029D  1007               	bcf	7,0	;volatile
+  1300     029E                     u764:
+  1301     029E                     l1086:
+  1302                           
+  1303                           ;JOGGING.c: 89:     LCD_SendNibble(byte >> 4);
+  1304     029E  0878               	movf	LCD_SendByte@byte,w
+  1305     029F  00F6               	movwf	??_LCD_SendByte
+  1306     02A0  3004               	movlw	4
+  1307     02A1                     u775:
+  1308     02A1  1003               	clrc
+  1309     02A2  0CF6               	rrf	??_LCD_SendByte,f
+  1310     02A3  3EFF               	addlw	-1
+  1311     02A4  1D03               	skipz
+  1312     02A5  2AA1               	goto	u775
+  1313     02A6  0876               	movf	??_LCD_SendByte,w
+  1314     02A7  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1315                           
+  1316                           ;JOGGING.c: 91:     LCD_SendNibble(byte & 0x0F);
+  1317     02AC  0878               	movf	LCD_SendByte@byte,w
+  1318     02AD  390F               	andlw	15
+  1319     02AE  120A  118A  224C  120A  118A  	fcall	_LCD_SendNibble
+  1320     02B3                     l1088:
+  1321                           
+  1322                           ;JOGGING.c: 94:     if(byte == 0x01 || byte == 0x02)
+  1323     02B3  0378               	decf	LCD_SendByte@byte,w
+  1324     02B4  1903               	btfsc	3,2
+  1325     02B5  2AB7               	goto	u781
+  1326     02B6  2AB8               	goto	u780
+  1327     02B7                     u781:
+  1328     02B7  2ABE               	goto	l1092
+  1329     02B8                     u780:
+  1330     02B8                     l1090:
+  1331     02B8  3002               	movlw	2
+  1332     02B9  0678               	xorwf	LCD_SendByte@byte,w
+  1333     02BA  1D03               	btfss	3,2
+  1334     02BB  2ABD               	goto	u791
+  1335     02BC  2ABE               	goto	u790
+  1336     02BD                     u791:
+  1337     02BD  2AC8               	goto	l1094
+  1338     02BE                     u790:
+  1339     02BE                     l1092:
+  1340                           
+  1341                           ;JOGGING.c: 95:         _delay((unsigned long)((2)*(4000000/4000.0)));
+  1342     02BE  3003               	movlw	3
+  1343     02BF  00F7               	movwf	??_LCD_SendByte+1
+  1344     02C0  3097               	movlw	151
+  1345     02C1  00F6               	movwf	??_LCD_SendByte
+  1346     02C2                     u937:
+  1347     02C2  0BF6               	decfsz	??_LCD_SendByte,f
+  1348     02C3  2AC2               	goto	u937
+  1349     02C4  0BF7               	decfsz	??_LCD_SendByte+1,f
+  1350     02C5  2AC2               	goto	u937
+  1351     02C6  2AC7               	nop2
+  1352     02C7  2ACC               	goto	l86
+  1353     02C8                     l1094:
+  1354                           
+  1355                           ;JOGGING.c: 97:         _delay((unsigned long)((100)*(4000000/4000000.0)));
+  1356     02C8  3021               	movlw	33
+  1357     02C9  00F6               	movwf	??_LCD_SendByte
+  1358     02CA                     u947:
+  1359     02CA  0BF6               	decfsz	??_LCD_SendByte,f
+  1360     02CB  2ACA               	goto	u947
+  1361     02CC                     l86:
+  1362     02CC  0008               	return
+  1363     02CD                     __end_of_LCD_SendByte:
+  1364                           
+  1365                           	psect	text7
+  1366     024C                     __ptext7:	
+  1367 ;; *************** function _LCD_SendNibble *****************
+  1368 ;; Defined at:
+  1369 ;;		line 77 in file "JOGGING.c"
+  1370 ;; Parameters:    Size  Location     Type
+  1371 ;;  nibble          1    wreg     unsigned char 
+  1372 ;; Auto vars:     Size  Location     Type
+  1373 ;;  nibble          1    4[COMMON] unsigned char 
+  1374 ;; Return value:  Size  Location     Type
+  1375 ;;                  1    wreg      void 
+  1376 ;; Registers used:
+  1377 ;;		wreg, status,2, status,0, pclath, cstack
+  1378 ;; Tracked objects:
+  1379 ;;		On entry : 0/0
+  1380 ;;		On exit  : 0/0
+  1381 ;;		Unchanged: 0/0
+  1382 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1383 ;;      Params:         0       0       0       0       0
+  1384 ;;      Locals:         1       0       0       0       0
+  1385 ;;      Temps:          1       0       0       0       0
+  1386 ;;      Totals:         2       0       0       0       0
+  1387 ;;Total ram usage:        2 bytes
+  1388 ;; Hardware stack levels used: 1
+  1389 ;; Hardware stack levels required when called: 2
+  1390 ;; This function calls:
+  1391 ;;		_LCD_PulseEnable
+  1392 ;; This function is called by:
+  1393 ;;		_LCD_SendByte
+  1394 ;;		_LCD_Init
+  1395 ;; This function uses a non-reentrant model
+  1396 ;;
+  1397                           
+  1398     024C                     _LCD_SendNibble:	
+  1399                           ;psect for function _LCD_SendNibble
+  1400                           
+  1401                           
+  1402                           ;incstack = 0
+  1403                           ; Regs used in _LCD_SendNibble: [wreg+status,2+status,0+pclath+cstack]
+  1404                           ;LCD_SendNibble@nibble stored from wreg
+  1405     024C  00F4               	movwf	LCD_SendNibble@nibble
+  1406     024D                     l1078:
+  1407                           
+  1408                           ;JOGGING.c: 78:     RC2 = (nibble >> 0) & 1;
+  1409     024D  1874               	btfsc	LCD_SendNibble@nibble,0
+  1410     024E  2A50               	goto	u641
+  1411     024F  2A54               	goto	u640
+  1412     0250                     u641:
+  1413     0250  1283               	bcf	3,5	;RP0=0, select bank0
+  1414     0251  1303               	bcf	3,6	;RP1=0, select bank0
+  1415     0252  1507               	bsf	7,2	;volatile
+  1416     0253  2A57               	goto	u654
+  1417     0254                     u640:
+  1418     0254  1283               	bcf	3,5	;RP0=0, select bank0
+  1419     0255  1303               	bcf	3,6	;RP1=0, select bank0
+  1420     0256  1107               	bcf	7,2	;volatile
+  1421     0257                     u654:
+  1422     0257                     l1080:
+  1423                           
+  1424                           ;JOGGING.c: 79:     RC3 = (nibble >> 1) & 1;
+  1425     0257  0874               	movf	LCD_SendNibble@nibble,w
+  1426     0258  00F3               	movwf	??_LCD_SendNibble
+  1427     0259  3001               	movlw	1
+  1428     025A                     u665:
+  1429     025A  1003               	clrc
+  1430     025B  0CF3               	rrf	??_LCD_SendNibble,f
+  1431     025C  3EFF               	addlw	-1
+  1432     025D  1D03               	skipz
+  1433     025E  2A5A               	goto	u665
+  1434     025F  1873               	btfsc	??_LCD_SendNibble,0
+  1435     0260  2A62               	goto	u671
+  1436     0261  2A66               	goto	u670
+  1437     0262                     u671:
+  1438     0262  1283               	bcf	3,5	;RP0=0, select bank0
+  1439     0263  1303               	bcf	3,6	;RP1=0, select bank0
+  1440     0264  1587               	bsf	7,3	;volatile
+  1441     0265  2A69               	goto	u684
+  1442     0266                     u670:
+  1443     0266  1283               	bcf	3,5	;RP0=0, select bank0
+  1444     0267  1303               	bcf	3,6	;RP1=0, select bank0
+  1445     0268  1187               	bcf	7,3	;volatile
+  1446     0269                     u684:
+  1447                           
+  1448                           ;JOGGING.c: 80:     RC4 = (nibble >> 2) & 1;
+  1449     0269  0874               	movf	LCD_SendNibble@nibble,w
+  1450     026A  00F3               	movwf	??_LCD_SendNibble
+  1451     026B  3002               	movlw	2
+  1452     026C                     u695:
+  1453     026C  1003               	clrc
+  1454     026D  0CF3               	rrf	??_LCD_SendNibble,f
+  1455     026E  3EFF               	addlw	-1
+  1456     026F  1D03               	skipz
+  1457     0270  2A6C               	goto	u695
+  1458     0271  1873               	btfsc	??_LCD_SendNibble,0
+  1459     0272  2A74               	goto	u701
+  1460     0273  2A78               	goto	u700
+  1461     0274                     u701:
+  1462     0274  1283               	bcf	3,5	;RP0=0, select bank0
+  1463     0275  1303               	bcf	3,6	;RP1=0, select bank0
+  1464     0276  1607               	bsf	7,4	;volatile
+  1465     0277  2A7B               	goto	u714
+  1466     0278                     u700:
+  1467     0278  1283               	bcf	3,5	;RP0=0, select bank0
+  1468     0279  1303               	bcf	3,6	;RP1=0, select bank0
+  1469     027A  1207               	bcf	7,4	;volatile
+  1470     027B                     u714:
+  1471                           
+  1472                           ;JOGGING.c: 81:     RC5 = (nibble >> 3) & 1;
+  1473     027B  0874               	movf	LCD_SendNibble@nibble,w
+  1474     027C  00F3               	movwf	??_LCD_SendNibble
+  1475     027D  3003               	movlw	3
+  1476     027E                     u725:
+  1477     027E  1003               	clrc
+  1478     027F  0CF3               	rrf	??_LCD_SendNibble,f
+  1479     0280  3EFF               	addlw	-1
+  1480     0281  1D03               	skipz
+  1481     0282  2A7E               	goto	u725
+  1482     0283  1873               	btfsc	??_LCD_SendNibble,0
+  1483     0284  2A86               	goto	u731
+  1484     0285  2A8A               	goto	u730
+  1485     0286                     u731:
+  1486     0286  1283               	bcf	3,5	;RP0=0, select bank0
+  1487     0287  1303               	bcf	3,6	;RP1=0, select bank0
+  1488     0288  1687               	bsf	7,5	;volatile
+  1489     0289  2A8D               	goto	u744
+  1490     028A                     u730:
+  1491     028A  1283               	bcf	3,5	;RP0=0, select bank0
+  1492     028B  1303               	bcf	3,6	;RP1=0, select bank0
+  1493     028C  1287               	bcf	7,5	;volatile
+  1494     028D                     u744:
+  1495     028D                     l1082:
+  1496                           
+  1497                           ;JOGGING.c: 82:     LCD_PulseEnable();
+  1498     028D  120A  118A  23A0  120A  118A  	fcall	_LCD_PulseEnable
+  1499     0292                     l79:
+  1500     0292  0008               	return
+  1501     0293                     __end_of_LCD_SendNibble:
+  1502                           
+  1503                           	psect	text8
+  1504     03A0                     __ptext8:	
+  1505 ;; *************** function _LCD_PulseEnable *****************
+  1506 ;; Defined at:
+  1507 ;;		line 70 in file "JOGGING.c"
+  1508 ;; Parameters:    Size  Location     Type
+  1509 ;;		None
+  1510 ;; Auto vars:     Size  Location     Type
+  1511 ;;		None
+  1512 ;; Return value:  Size  Location     Type
+  1513 ;;                  1    wreg      void 
+  1514 ;; Registers used:
+  1515 ;;		wreg
+  1516 ;; Tracked objects:
+  1517 ;;		On entry : 0/0
+  1518 ;;		On exit  : 0/0
+  1519 ;;		Unchanged: 0/0
+  1520 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1521 ;;      Params:         0       0       0       0       0
+  1522 ;;      Locals:         0       0       0       0       0
+  1523 ;;      Temps:          1       0       0       0       0
+  1524 ;;      Totals:         1       0       0       0       0
+  1525 ;;Total ram usage:        1 bytes
+  1526 ;; Hardware stack levels used: 1
+  1527 ;; Hardware stack levels required when called: 1
+  1528 ;; This function calls:
+  1529 ;;		Nothing
+  1530 ;; This function is called by:
+  1531 ;;		_LCD_SendNibble
+  1532 ;; This function uses a non-reentrant model
+  1533 ;;
+  1534                           
+  1535     03A0                     _LCD_PulseEnable:	
+  1536                           ;psect for function _LCD_PulseEnable
+  1537                           
+  1538     03A0                     l1074:	
+  1539                           ;incstack = 0
+  1540                           ; Regs used in _LCD_PulseEnable: [wreg]
+  1541                           
+  1542                           
+  1543                           ;JOGGING.c: 71:     RC1 = 1;
+  1544     03A0  1283               	bcf	3,5	;RP0=0, select bank0
+  1545     03A1  1303               	bcf	3,6	;RP1=0, select bank0
+  1546     03A2  1487               	bsf	7,1	;volatile
+  1547                           
+  1548                           ;JOGGING.c: 72:     _delay((unsigned long)((1)*(4000000/4000000.0)));
+  1549     03A3  0000               	nop
+  1550                           
+  1551                           ;JOGGING.c: 73:     RC1 = 0;
+  1552     03A4  1283               	bcf	3,5	;RP0=0, select bank0
+  1553     03A5  1303               	bcf	3,6	;RP1=0, select bank0
+  1554     03A6  1087               	bcf	7,1	;volatile
+  1555     03A7                     l1076:
+  1556                           
+  1557                           ;JOGGING.c: 74:     _delay((unsigned long)((100)*(4000000/4000000.0)));
+  1558     03A7  3021               	movlw	33
+  1559     03A8  00F2               	movwf	??_LCD_PulseEnable
+  1560     03A9                     u957:
+  1561     03A9  0BF2               	decfsz	??_LCD_PulseEnable,f
+  1562     03AA  2BA9               	goto	u957
+  1563     03AB                     l76:
+  1564     03AB  0008               	return
+  1565     03AC                     __end_of_LCD_PulseEnable:
+  1566                           
+  1567                           	psect	text9
+  1568     0165                     __ptext9:	
+  1569 ;; *************** function _Jogging *****************
+  1570 ;; Defined at:
+  1571 ;;		line 226 in file "JOGGING.c"
+  1572 ;; Parameters:    Size  Location     Type
+  1573 ;;		None
+  1574 ;; Auto vars:     Size  Location     Type
+  1575 ;;  current_jog_    1    2[COMMON] unsigned char 
+  1576 ;; Return value:  Size  Location     Type
+  1577 ;;                  1    wreg      void 
+  1578 ;; Registers used:
+  1579 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1580 ;; Tracked objects:
+  1581 ;;		On entry : 0/0
+  1582 ;;		On exit  : 0/0
+  1583 ;;		Unchanged: 0/0
+  1584 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1585 ;;      Params:         0       0       0       0       0
+  1586 ;;      Locals:         1       0       0       0       0
+  1587 ;;      Temps:          0       0       0       0       0
+  1588 ;;      Totals:         1       0       0       0       0
+  1589 ;;Total ram usage:        1 bytes
+  1590 ;; Hardware stack levels used: 1
+  1591 ;; Hardware stack levels required when called: 2
+  1592 ;; This function calls:
+  1593 ;;		_fullStepDerecha
+  1594 ;;		_fullStepIzquierda
+  1595 ;;		_halfStepDerecha
+  1596 ;;		_halfStepIzquierda
+  1597 ;; This function is called by:
+  1598 ;;		_main
+  1599 ;; This function uses a non-reentrant model
+  1600 ;;
+  1601                           
+  1602     0165                     _Jogging:	
+  1603                           ;psect for function _Jogging
+  1604                           
+  1605     0165                     l1030:	
+  1606                           ;incstack = 0
+  1607                           ; Regs used in _Jogging: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1608                           
+  1609                           
+  1610                           ;JOGGING.c: 227:     static unsigned char last_jog_button = 1;;JOGGING.c: 229:     unsig
+      +                          ned char current_jog_button = RB5;
+  1611     0165  3000               	movlw	0
+  1612     0166  1283               	bcf	3,5	;RP0=0, select bank0
+  1613     0167  1303               	bcf	3,6	;RP1=0, select bank0
+  1614     0168  1A86               	btfsc	6,5	;volatile
+  1615     0169  3001               	movlw	1
+  1616     016A  00F2               	movwf	Jogging@current_jog_button
+  1617     016B                     l1032:
+  1618                           
+  1619                           ;JOGGING.c: 232:     if (last_jog_button && !current_jog_button) {
+  1620     016B  083A               	movf	Jogging@last_jog_button,w
+  1621     016C  1903               	btfsc	3,2
+  1622     016D  296F               	goto	u521
+  1623     016E  2970               	goto	u520
+  1624     016F                     u521:
+  1625     016F  29B1               	goto	l1056
+  1626     0170                     u520:
+  1627     0170                     l1034:
+  1628     0170  0872               	movf	Jogging@current_jog_button,w
+  1629     0171  1D03               	btfss	3,2
+  1630     0172  2974               	goto	u531
+  1631     0173  2975               	goto	u530
+  1632     0174                     u531:
+  1633     0174  29B1               	goto	l1056
+  1634     0175                     u530:
+  1635     0175                     l1036:
+  1636                           
+  1637                           ;JOGGING.c: 234:         if (RB0) {
+  1638     0175  1C06               	btfss	6,0	;volatile
+  1639     0176  2978               	goto	u541
+  1640     0177  2979               	goto	u540
+  1641     0178                     u541:
+  1642     0178  2995               	goto	l174
+  1643     0179                     u540:
+  1644     0179                     l1038:
+  1645                           
+  1646                           ;JOGGING.c: 235:             if (!RB1 && RB2) {
+  1647     0179  1886               	btfsc	6,1	;volatile
+  1648     017A  297C               	goto	u551
+  1649     017B  297D               	goto	u550
+  1650     017C                     u551:
+  1651     017C  2987               	goto	l175
+  1652     017D                     u550:
+  1653     017D                     l1040:
+  1654     017D  1D06               	btfss	6,2	;volatile
+  1655     017E  2980               	goto	u561
+  1656     017F  2981               	goto	u560
+  1657     0180                     u561:
+  1658     0180  2987               	goto	l175
+  1659     0181                     u560:
+  1660     0181                     l1042:
+  1661                           
+  1662                           ;JOGGING.c: 236:                 fullStepDerecha();
+  1663     0181  120A  118A  22F8  120A  118A  	fcall	_fullStepDerecha
+  1664                           
+  1665                           ;JOGGING.c: 237:             } else if (RB1 && !RB2) {
+  1666     0186  29B1               	goto	l1056
+  1667     0187                     l175:
+  1668     0187  1C86               	btfss	6,1	;volatile
+  1669     0188  298A               	goto	u571
+  1670     0189  298B               	goto	u570
+  1671     018A                     u571:
+  1672     018A  29B1               	goto	l178
+  1673     018B                     u570:
+  1674     018B                     l1044:
+  1675     018B  1906               	btfsc	6,2	;volatile
+  1676     018C  298E               	goto	u581
+  1677     018D  298F               	goto	u580
+  1678     018E                     u581:
+  1679     018E  29B1               	goto	l178
+  1680     018F                     u580:
+  1681     018F                     l1046:
+  1682                           
+  1683                           ;JOGGING.c: 238:                 fullStepIzquierda();
+  1684     018F  120A  118A  22CD  120A  118A  	fcall	_fullStepIzquierda
+  1685     0194  29B1               	goto	l1056
+  1686     0195                     l174:	
+  1687                           ;JOGGING.c: 242:         else {
+  1688                           
+  1689                           
+  1690                           ;JOGGING.c: 243:             if (!RB1 && RB2) {
+  1691     0195  1886               	btfsc	6,1	;volatile
+  1692     0196  2998               	goto	u591
+  1693     0197  2999               	goto	u590
+  1694     0198                     u591:
+  1695     0198  29A3               	goto	l179
+  1696     0199                     u590:
+  1697     0199                     l1048:
+  1698     0199  1D06               	btfss	6,2	;volatile
+  1699     019A  299C               	goto	u601
+  1700     019B  299D               	goto	u600
+  1701     019C                     u601:
+  1702     019C  29A3               	goto	l179
+  1703     019D                     u600:
+  1704     019D                     l1050:
+  1705                           
+  1706                           ;JOGGING.c: 244:                 halfStepDerecha();
+  1707     019D  120A  118A  2201  120A  118A  	fcall	_halfStepDerecha
+  1708                           
+  1709                           ;JOGGING.c: 245:             } else if (RB1 && !RB2) {
+  1710     01A2  29B1               	goto	l1056
+  1711     01A3                     l179:
+  1712     01A3  1C86               	btfss	6,1	;volatile
+  1713     01A4  29A6               	goto	u611
+  1714     01A5  29A7               	goto	u610
+  1715     01A6                     u611:
+  1716     01A6  29B1               	goto	l178
+  1717     01A7                     u610:
+  1718     01A7                     l1052:
+  1719     01A7  1906               	btfsc	6,2	;volatile
+  1720     01A8  29AA               	goto	u621
+  1721     01A9  29AB               	goto	u620
+  1722     01AA                     u621:
+  1723     01AA  29B1               	goto	l178
+  1724     01AB                     u620:
+  1725     01AB                     l1054:
+  1726                           
+  1727                           ;JOGGING.c: 246:                 halfStepIzquierda();
+  1728     01AB  120A  118A  21B6  120A  118A  	fcall	_halfStepIzquierda
+  1729     01B0  29B1               	goto	l1056
+  1730     01B1                     l178:	
+  1731                           ;JOGGING.c: 248:         }
+  1732                           
+  1733     01B1                     l1056:
+  1734                           
+  1735                           ;JOGGING.c: 252:     last_jog_button = current_jog_button;
+  1736     01B1  0872               	movf	Jogging@current_jog_button,w
+  1737     01B2  1283               	bcf	3,5	;RP0=0, select bank0
+  1738     01B3  1303               	bcf	3,6	;RP1=0, select bank0
+  1739     01B4  00BA               	movwf	Jogging@last_jog_button
+  1740     01B5                     l182:
+  1741     01B5  0008               	return
+  1742     01B6                     __end_of_Jogging:
+  1743                           
+  1744                           	psect	text10
+  1745     01B6                     __ptext10:	
+  1746 ;; *************** function _halfStepIzquierda *****************
+  1747 ;; Defined at:
+  1748 ;;		line 211 in file "JOGGING.c"
+  1749 ;; Parameters:    Size  Location     Type
+  1750 ;;		None
+  1751 ;; Auto vars:     Size  Location     Type
+  1752 ;;		None
+  1753 ;; Return value:  Size  Location     Type
+  1754 ;;                  1    wreg      void 
+  1755 ;; Registers used:
+  1756 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1757 ;; Tracked objects:
+  1758 ;;		On entry : 0/0
+  1759 ;;		On exit  : 0/0
+  1760 ;;		Unchanged: 0/0
+  1761 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1762 ;;      Params:         0       0       0       0       0
+  1763 ;;      Locals:         0       0       0       0       0
+  1764 ;;      Temps:          0       0       0       0       0
+  1765 ;;      Totals:         0       0       0       0       0
+  1766 ;;Total ram usage:        0 bytes
+  1767 ;; Hardware stack levels used: 1
+  1768 ;; Hardware stack levels required when called: 1
+  1769 ;; This function calls:
+  1770 ;;		Nothing
+  1771 ;; This function is called by:
+  1772 ;;		_Jogging
+  1773 ;; This function uses a non-reentrant model
+  1774 ;;
+  1775                           
+  1776     01B6                     _halfStepIzquierda:	
+  1777                           ;psect for function _halfStepIzquierda
+  1778                           
+  1779     01B6                     l968:	
+  1780                           ;incstack = 0
+  1781                           ; Regs used in _halfStepIzquierda: [wreg-fsr0h+status,2+status,0]
+  1782                           
+  1783                           
+  1784                           ;JOGGING.c: 212:     static unsigned char paso = 0;;JOGGING.c: 213:     switch(paso) {
+  1785     01B6  29DF               	goto	l972
+  1786     01B7                     l159:	
+  1787                           ;JOGGING.c: 214:         case 0: RD0 = 0; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  1788                           
+  1789     01B7  1008               	bcf	8,0	;volatile
+  1790     01B8  1088               	bcf	8,1	;volatile
+  1791     01B9  1108               	bcf	8,2	;volatile
+  1792     01BA  1588               	bsf	8,3	;volatile
+  1793     01BB  29FB               	goto	l974
+  1794     01BC                     l161:	
+  1795                           ;JOGGING.c: 215:         case 1: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 1; break;
+  1796                           
+  1797     01BC  1008               	bcf	8,0	;volatile
+  1798     01BD  1488               	bsf	8,1	;volatile
+  1799     01BE  1108               	bcf	8,2	;volatile
+  1800     01BF  1588               	bsf	8,3	;volatile
+  1801     01C0  29FB               	goto	l974
+  1802     01C1                     l162:	
+  1803                           ;JOGGING.c: 216:         case 2: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 0; break;
+  1804                           
+  1805     01C1  1008               	bcf	8,0	;volatile
+  1806     01C2  1488               	bsf	8,1	;volatile
+  1807     01C3  1108               	bcf	8,2	;volatile
+  1808     01C4  1188               	bcf	8,3	;volatile
+  1809     01C5  29FB               	goto	l974
+  1810     01C6                     l163:	
+  1811                           ;JOGGING.c: 217:         case 3: RD0 = 0; RD1 = 1; RD2 = 1; RD3 = 0; break;
+  1812                           
+  1813     01C6  1008               	bcf	8,0	;volatile
+  1814     01C7  1488               	bsf	8,1	;volatile
+  1815     01C8  1508               	bsf	8,2	;volatile
+  1816     01C9  1188               	bcf	8,3	;volatile
+  1817     01CA  29FB               	goto	l974
+  1818     01CB                     l164:	
+  1819                           ;JOGGING.c: 218:         case 4: RD0 = 0; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  1820                           
+  1821     01CB  1008               	bcf	8,0	;volatile
+  1822     01CC  1088               	bcf	8,1	;volatile
+  1823     01CD  1508               	bsf	8,2	;volatile
+  1824     01CE  1188               	bcf	8,3	;volatile
+  1825     01CF  29FB               	goto	l974
+  1826     01D0                     l165:	
+  1827                           ;JOGGING.c: 219:         case 5: RD0 = 1; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  1828                           
+  1829     01D0  1408               	bsf	8,0	;volatile
+  1830     01D1  1088               	bcf	8,1	;volatile
+  1831     01D2  1508               	bsf	8,2	;volatile
+  1832     01D3  1188               	bcf	8,3	;volatile
+  1833     01D4  29FB               	goto	l974
+  1834     01D5                     l166:	
+  1835                           ;JOGGING.c: 220:         case 6: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 0; break;
+  1836                           
+  1837     01D5  1408               	bsf	8,0	;volatile
+  1838     01D6  1088               	bcf	8,1	;volatile
+  1839     01D7  1108               	bcf	8,2	;volatile
+  1840     01D8  1188               	bcf	8,3	;volatile
+  1841     01D9  29FB               	goto	l974
+  1842     01DA                     l167:	
+  1843                           ;JOGGING.c: 221:         case 7: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  1844                           
+  1845     01DA  1408               	bsf	8,0	;volatile
+  1846     01DB  1088               	bcf	8,1	;volatile
+  1847     01DC  1108               	bcf	8,2	;volatile
+  1848     01DD  1588               	bsf	8,3	;volatile
+  1849     01DE  29FB               	goto	l974
+  1850     01DF                     l972:
+  1851     01DF  1283               	bcf	3,5	;RP0=0, select bank0
+  1852     01E0  1303               	bcf	3,6	;RP1=0, select bank0
+  1853     01E1  0833               	movf	halfStepIzquierda@paso,w
+  1854                           
+  1855                           ; Switch size 1, requested type "simple"
+  1856                           ; Number of cases is 8, Range of values is 0 to 7
+  1857                           ; switch strategies available:
+  1858                           ; Name         Instructions Cycles
+  1859                           ; simple_byte           25    13 (average)
+  1860                           ; direct_byte           32     8 (fixed)
+  1861                           ; jumptable            260     6 (fixed)
+  1862                           ;	Chosen strategy is simple_byte
+  1863     01E2  3A00               	xorlw	0	; case 0
+  1864     01E3  1903               	skipnz
+  1865     01E4  29B7               	goto	l159
+  1866     01E5  3A01               	xorlw	1	; case 1
+  1867     01E6  1903               	skipnz
+  1868     01E7  29BC               	goto	l161
+  1869     01E8  3A03               	xorlw	3	; case 2
+  1870     01E9  1903               	skipnz
+  1871     01EA  29C1               	goto	l162
+  1872     01EB  3A01               	xorlw	1	; case 3
+  1873     01EC  1903               	skipnz
+  1874     01ED  29C6               	goto	l163
+  1875     01EE  3A07               	xorlw	7	; case 4
+  1876     01EF  1903               	skipnz
+  1877     01F0  29CB               	goto	l164
+  1878     01F1  3A01               	xorlw	1	; case 5
+  1879     01F2  1903               	skipnz
+  1880     01F3  29D0               	goto	l165
+  1881     01F4  3A03               	xorlw	3	; case 6
+  1882     01F5  1903               	skipnz
+  1883     01F6  29D5               	goto	l166
+  1884     01F7  3A01               	xorlw	1	; case 7
+  1885     01F8  1903               	skipnz
+  1886     01F9  29DA               	goto	l167
+  1887     01FA  29FB               	goto	l974
+  1888     01FB                     l974:
+  1889                           
+  1890                           ;JOGGING.c: 223:     paso = (paso + 1) % 8;
+  1891     01FB  0833               	movf	halfStepIzquierda@paso,w
+  1892     01FC  3E01               	addlw	1
+  1893     01FD  00B3               	movwf	halfStepIzquierda@paso
+  1894     01FE  3007               	movlw	7
+  1895     01FF  05B3               	andwf	halfStepIzquierda@paso,f
+  1896     0200                     l168:
+  1897     0200  0008               	return
+  1898     0201                     __end_of_halfStepIzquierda:
+  1899                           
+  1900                           	psect	text11
+  1901     0201                     __ptext11:	
+  1902 ;; *************** function _halfStepDerecha *****************
+  1903 ;; Defined at:
+  1904 ;;		line 196 in file "JOGGING.c"
+  1905 ;; Parameters:    Size  Location     Type
+  1906 ;;		None
+  1907 ;; Auto vars:     Size  Location     Type
+  1908 ;;		None
+  1909 ;; Return value:  Size  Location     Type
+  1910 ;;                  1    wreg      void 
+  1911 ;; Registers used:
+  1912 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1913 ;; Tracked objects:
+  1914 ;;		On entry : 0/0
+  1915 ;;		On exit  : 0/0
+  1916 ;;		Unchanged: 0/0
+  1917 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1918 ;;      Params:         0       0       0       0       0
+  1919 ;;      Locals:         0       0       0       0       0
+  1920 ;;      Temps:          0       0       0       0       0
+  1921 ;;      Totals:         0       0       0       0       0
+  1922 ;;Total ram usage:        0 bytes
+  1923 ;; Hardware stack levels used: 1
+  1924 ;; Hardware stack levels required when called: 1
+  1925 ;; This function calls:
+  1926 ;;		Nothing
+  1927 ;; This function is called by:
+  1928 ;;		_Jogging
+  1929 ;; This function uses a non-reentrant model
+  1930 ;;
+  1931                           
+  1932     0201                     _halfStepDerecha:	
+  1933                           ;psect for function _halfStepDerecha
+  1934                           
+  1935     0201                     l960:	
+  1936                           ;incstack = 0
+  1937                           ; Regs used in _halfStepDerecha: [wreg-fsr0h+status,2+status,0]
+  1938                           
+  1939                           
+  1940                           ;JOGGING.c: 197:     static unsigned char paso = 0;;JOGGING.c: 198:     switch(paso) {
+  1941     0201  2A2A               	goto	l964
+  1942     0202                     l144:	
+  1943                           ;JOGGING.c: 199:         case 0: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 0; break;
+  1944                           
+  1945     0202  1408               	bsf	8,0	;volatile
+  1946     0203  1088               	bcf	8,1	;volatile
+  1947     0204  1108               	bcf	8,2	;volatile
+  1948     0205  1188               	bcf	8,3	;volatile
+  1949     0206  2A46               	goto	l966
+  1950     0207                     l146:	
+  1951                           ;JOGGING.c: 200:         case 1: RD0 = 1; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  1952                           
+  1953     0207  1408               	bsf	8,0	;volatile
+  1954     0208  1088               	bcf	8,1	;volatile
+  1955     0209  1508               	bsf	8,2	;volatile
+  1956     020A  1188               	bcf	8,3	;volatile
+  1957     020B  2A46               	goto	l966
+  1958     020C                     l147:	
+  1959                           ;JOGGING.c: 201:         case 2: RD0 = 0; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  1960                           
+  1961     020C  1008               	bcf	8,0	;volatile
+  1962     020D  1088               	bcf	8,1	;volatile
+  1963     020E  1508               	bsf	8,2	;volatile
+  1964     020F  1188               	bcf	8,3	;volatile
+  1965     0210  2A46               	goto	l966
+  1966     0211                     l148:	
+  1967                           ;JOGGING.c: 202:         case 3: RD0 = 0; RD1 = 1; RD2 = 1; RD3 = 0; break;
+  1968                           
+  1969     0211  1008               	bcf	8,0	;volatile
+  1970     0212  1488               	bsf	8,1	;volatile
+  1971     0213  1508               	bsf	8,2	;volatile
+  1972     0214  1188               	bcf	8,3	;volatile
+  1973     0215  2A46               	goto	l966
+  1974     0216                     l149:	
+  1975                           ;JOGGING.c: 203:         case 4: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 0; break;
+  1976                           
+  1977     0216  1008               	bcf	8,0	;volatile
+  1978     0217  1488               	bsf	8,1	;volatile
+  1979     0218  1108               	bcf	8,2	;volatile
+  1980     0219  1188               	bcf	8,3	;volatile
+  1981     021A  2A46               	goto	l966
+  1982     021B                     l150:	
+  1983                           ;JOGGING.c: 204:         case 5: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 1; break;
+  1984                           
+  1985     021B  1008               	bcf	8,0	;volatile
+  1986     021C  1488               	bsf	8,1	;volatile
+  1987     021D  1108               	bcf	8,2	;volatile
+  1988     021E  1588               	bsf	8,3	;volatile
+  1989     021F  2A46               	goto	l966
+  1990     0220                     l151:	
+  1991                           ;JOGGING.c: 205:         case 6: RD0 = 0; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  1992                           
+  1993     0220  1008               	bcf	8,0	;volatile
+  1994     0221  1088               	bcf	8,1	;volatile
+  1995     0222  1108               	bcf	8,2	;volatile
+  1996     0223  1588               	bsf	8,3	;volatile
+  1997     0224  2A46               	goto	l966
+  1998     0225                     l152:	
+  1999                           ;JOGGING.c: 206:         case 7: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  2000                           
+  2001     0225  1408               	bsf	8,0	;volatile
+  2002     0226  1088               	bcf	8,1	;volatile
+  2003     0227  1108               	bcf	8,2	;volatile
+  2004     0228  1588               	bsf	8,3	;volatile
+  2005     0229  2A46               	goto	l966
+  2006     022A                     l964:
+  2007     022A  1283               	bcf	3,5	;RP0=0, select bank0
+  2008     022B  1303               	bcf	3,6	;RP1=0, select bank0
+  2009     022C  0834               	movf	halfStepDerecha@paso,w
+  2010                           
+  2011                           ; Switch size 1, requested type "simple"
+  2012                           ; Number of cases is 8, Range of values is 0 to 7
+  2013                           ; switch strategies available:
+  2014                           ; Name         Instructions Cycles
+  2015                           ; simple_byte           25    13 (average)
+  2016                           ; direct_byte           32     8 (fixed)
+  2017                           ; jumptable            260     6 (fixed)
+  2018                           ;	Chosen strategy is simple_byte
+  2019     022D  3A00               	xorlw	0	; case 0
+  2020     022E  1903               	skipnz
+  2021     022F  2A02               	goto	l144
+  2022     0230  3A01               	xorlw	1	; case 1
+  2023     0231  1903               	skipnz
+  2024     0232  2A07               	goto	l146
+  2025     0233  3A03               	xorlw	3	; case 2
+  2026     0234  1903               	skipnz
+  2027     0235  2A0C               	goto	l147
+  2028     0236  3A01               	xorlw	1	; case 3
+  2029     0237  1903               	skipnz
+  2030     0238  2A11               	goto	l148
+  2031     0239  3A07               	xorlw	7	; case 4
+  2032     023A  1903               	skipnz
+  2033     023B  2A16               	goto	l149
+  2034     023C  3A01               	xorlw	1	; case 5
+  2035     023D  1903               	skipnz
+  2036     023E  2A1B               	goto	l150
+  2037     023F  3A03               	xorlw	3	; case 6
+  2038     0240  1903               	skipnz
+  2039     0241  2A20               	goto	l151
+  2040     0242  3A01               	xorlw	1	; case 7
+  2041     0243  1903               	skipnz
+  2042     0244  2A25               	goto	l152
+  2043     0245  2A46               	goto	l966
+  2044     0246                     l966:
+  2045                           
+  2046                           ;JOGGING.c: 208:     paso = (paso + 1) % 8;
+  2047     0246  0834               	movf	halfStepDerecha@paso,w
+  2048     0247  3E01               	addlw	1
+  2049     0248  00B4               	movwf	halfStepDerecha@paso
+  2050     0249  3007               	movlw	7
+  2051     024A  05B4               	andwf	halfStepDerecha@paso,f
+  2052     024B                     l153:
+  2053     024B  0008               	return
+  2054     024C                     __end_of_halfStepDerecha:
+  2055                           
+  2056                           	psect	text12
+  2057     02CD                     __ptext12:	
+  2058 ;; *************** function _fullStepIzquierda *****************
+  2059 ;; Defined at:
+  2060 ;;		line 185 in file "JOGGING.c"
+  2061 ;; Parameters:    Size  Location     Type
+  2062 ;;		None
+  2063 ;; Auto vars:     Size  Location     Type
+  2064 ;;		None
+  2065 ;; Return value:  Size  Location     Type
+  2066 ;;                  1    wreg      void 
+  2067 ;; Registers used:
+  2068 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2069 ;; Tracked objects:
+  2070 ;;		On entry : 0/0
+  2071 ;;		On exit  : 0/0
+  2072 ;;		Unchanged: 0/0
+  2073 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2074 ;;      Params:         0       0       0       0       0
+  2075 ;;      Locals:         0       0       0       0       0
+  2076 ;;      Temps:          0       0       0       0       0
+  2077 ;;      Totals:         0       0       0       0       0
+  2078 ;;Total ram usage:        0 bytes
+  2079 ;; Hardware stack levels used: 1
+  2080 ;; Hardware stack levels required when called: 1
+  2081 ;; This function calls:
+  2082 ;;		Nothing
+  2083 ;; This function is called by:
+  2084 ;;		_Jogging
+  2085 ;; This function uses a non-reentrant model
+  2086 ;;
+  2087                           
+  2088     02CD                     _fullStepIzquierda:	
+  2089                           ;psect for function _fullStepIzquierda
+  2090                           
+  2091     02CD                     l952:	
+  2092                           ;incstack = 0
+  2093                           ; Regs used in _fullStepIzquierda: [wreg-fsr0h+status,2+status,0]
+  2094                           
+  2095                           
+  2096                           ;JOGGING.c: 186:     static unsigned char paso = 0;;JOGGING.c: 187:     switch(paso) {
+  2097     02CD  2AE2               	goto	l956
+  2098     02CE                     l133:	
+  2099                           ;JOGGING.c: 188:         case 0: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  2100                           
+  2101     02CE  1408               	bsf	8,0	;volatile
+  2102     02CF  1088               	bcf	8,1	;volatile
+  2103     02D0  1108               	bcf	8,2	;volatile
+  2104     02D1  1588               	bsf	8,3	;volatile
+  2105     02D2  2AF2               	goto	l958
+  2106     02D3                     l135:	
+  2107                           ;JOGGING.c: 189:         case 1: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 1; break;
+  2108                           
+  2109     02D3  1008               	bcf	8,0	;volatile
+  2110     02D4  1488               	bsf	8,1	;volatile
+  2111     02D5  1108               	bcf	8,2	;volatile
+  2112     02D6  1588               	bsf	8,3	;volatile
+  2113     02D7  2AF2               	goto	l958
+  2114     02D8                     l136:	
+  2115                           ;JOGGING.c: 190:         case 2: RD0 = 0; RD1 = 1; RD2 = 1; RD3 = 0; break;
+  2116                           
+  2117     02D8  1008               	bcf	8,0	;volatile
+  2118     02D9  1488               	bsf	8,1	;volatile
+  2119     02DA  1508               	bsf	8,2	;volatile
+  2120     02DB  1188               	bcf	8,3	;volatile
+  2121     02DC  2AF2               	goto	l958
+  2122     02DD                     l137:	
+  2123                           ;JOGGING.c: 191:         case 3: RD0 = 1; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  2124                           
+  2125     02DD  1408               	bsf	8,0	;volatile
+  2126     02DE  1088               	bcf	8,1	;volatile
+  2127     02DF  1508               	bsf	8,2	;volatile
+  2128     02E0  1188               	bcf	8,3	;volatile
+  2129     02E1  2AF2               	goto	l958
+  2130     02E2                     l956:
+  2131     02E2  1283               	bcf	3,5	;RP0=0, select bank0
+  2132     02E3  1303               	bcf	3,6	;RP1=0, select bank0
+  2133     02E4  0835               	movf	fullStepIzquierda@paso,w
+  2134                           
+  2135                           ; Switch size 1, requested type "simple"
+  2136                           ; Number of cases is 4, Range of values is 0 to 3
+  2137                           ; switch strategies available:
+  2138                           ; Name         Instructions Cycles
+  2139                           ; simple_byte           13     7 (average)
+  2140                           ; direct_byte           20     8 (fixed)
+  2141                           ; jumptable            260     6 (fixed)
+  2142                           ;	Chosen strategy is simple_byte
+  2143     02E5  3A00               	xorlw	0	; case 0
+  2144     02E6  1903               	skipnz
+  2145     02E7  2ACE               	goto	l133
+  2146     02E8  3A01               	xorlw	1	; case 1
+  2147     02E9  1903               	skipnz
+  2148     02EA  2AD3               	goto	l135
+  2149     02EB  3A03               	xorlw	3	; case 2
+  2150     02EC  1903               	skipnz
+  2151     02ED  2AD8               	goto	l136
+  2152     02EE  3A01               	xorlw	1	; case 3
+  2153     02EF  1903               	skipnz
+  2154     02F0  2ADD               	goto	l137
+  2155     02F1  2AF2               	goto	l958
+  2156     02F2                     l958:
+  2157                           
+  2158                           ;JOGGING.c: 193:     paso = (paso + 1) % 4;
+  2159     02F2  0835               	movf	fullStepIzquierda@paso,w
+  2160     02F3  3E01               	addlw	1
+  2161     02F4  00B5               	movwf	fullStepIzquierda@paso
+  2162     02F5  3003               	movlw	3
+  2163     02F6  05B5               	andwf	fullStepIzquierda@paso,f
+  2164     02F7                     l138:
+  2165     02F7  0008               	return
+  2166     02F8                     __end_of_fullStepIzquierda:
+  2167                           
+  2168                           	psect	text13
+  2169     02F8                     __ptext13:	
+  2170 ;; *************** function _fullStepDerecha *****************
+  2171 ;; Defined at:
+  2172 ;;		line 174 in file "JOGGING.c"
+  2173 ;; Parameters:    Size  Location     Type
+  2174 ;;		None
+  2175 ;; Auto vars:     Size  Location     Type
+  2176 ;;		None
+  2177 ;; Return value:  Size  Location     Type
+  2178 ;;                  1    wreg      void 
+  2179 ;; Registers used:
+  2180 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2181 ;; Tracked objects:
+  2182 ;;		On entry : 0/0
+  2183 ;;		On exit  : 0/0
+  2184 ;;		Unchanged: 0/0
+  2185 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2186 ;;      Params:         0       0       0       0       0
+  2187 ;;      Locals:         0       0       0       0       0
+  2188 ;;      Temps:          0       0       0       0       0
+  2189 ;;      Totals:         0       0       0       0       0
+  2190 ;;Total ram usage:        0 bytes
+  2191 ;; Hardware stack levels used: 1
+  2192 ;; Hardware stack levels required when called: 1
+  2193 ;; This function calls:
+  2194 ;;		Nothing
+  2195 ;; This function is called by:
+  2196 ;;		_Jogging
+  2197 ;; This function uses a non-reentrant model
+  2198 ;;
+  2199                           
+  2200     02F8                     _fullStepDerecha:	
+  2201                           ;psect for function _fullStepDerecha
+  2202                           
+  2203     02F8                     l944:	
+  2204                           ;incstack = 0
+  2205                           ; Regs used in _fullStepDerecha: [wreg-fsr0h+status,2+status,0]
+  2206                           
+  2207                           
+  2208                           ;JOGGING.c: 175:     static unsigned char paso = 0;;JOGGING.c: 176:     switch(paso) {
+  2209     02F8  2B0D               	goto	l948
+  2210     02F9                     l122:	
+  2211                           ;JOGGING.c: 177:         case 0: RD0 = 1; RD1 = 0; RD2 = 1; RD3 = 0; break;
+  2212                           
+  2213     02F9  1408               	bsf	8,0	;volatile
+  2214     02FA  1088               	bcf	8,1	;volatile
+  2215     02FB  1508               	bsf	8,2	;volatile
+  2216     02FC  1188               	bcf	8,3	;volatile
+  2217     02FD  2B1D               	goto	l950
+  2218     02FE                     l124:	
+  2219                           ;JOGGING.c: 178:         case 1: RD0 = 0; RD1 = 1; RD2 = 1; RD3 = 0; break;
+  2220                           
+  2221     02FE  1008               	bcf	8,0	;volatile
+  2222     02FF  1488               	bsf	8,1	;volatile
+  2223     0300  1508               	bsf	8,2	;volatile
+  2224     0301  1188               	bcf	8,3	;volatile
+  2225     0302  2B1D               	goto	l950
+  2226     0303                     l125:	
+  2227                           ;JOGGING.c: 179:         case 2: RD0 = 0; RD1 = 1; RD2 = 0; RD3 = 1; break;
+  2228                           
+  2229     0303  1008               	bcf	8,0	;volatile
+  2230     0304  1488               	bsf	8,1	;volatile
+  2231     0305  1108               	bcf	8,2	;volatile
+  2232     0306  1588               	bsf	8,3	;volatile
+  2233     0307  2B1D               	goto	l950
+  2234     0308                     l126:	
+  2235                           ;JOGGING.c: 180:         case 3: RD0 = 1; RD1 = 0; RD2 = 0; RD3 = 1; break;
+  2236                           
+  2237     0308  1408               	bsf	8,0	;volatile
+  2238     0309  1088               	bcf	8,1	;volatile
+  2239     030A  1108               	bcf	8,2	;volatile
+  2240     030B  1588               	bsf	8,3	;volatile
+  2241     030C  2B1D               	goto	l950
+  2242     030D                     l948:
+  2243     030D  1283               	bcf	3,5	;RP0=0, select bank0
+  2244     030E  1303               	bcf	3,6	;RP1=0, select bank0
+  2245     030F  0836               	movf	fullStepDerecha@paso,w
+  2246                           
+  2247                           ; Switch size 1, requested type "simple"
+  2248                           ; Number of cases is 4, Range of values is 0 to 3
+  2249                           ; switch strategies available:
+  2250                           ; Name         Instructions Cycles
+  2251                           ; simple_byte           13     7 (average)
+  2252                           ; direct_byte           20     8 (fixed)
+  2253                           ; jumptable            260     6 (fixed)
+  2254                           ;	Chosen strategy is simple_byte
+  2255     0310  3A00               	xorlw	0	; case 0
+  2256     0311  1903               	skipnz
+  2257     0312  2AF9               	goto	l122
+  2258     0313  3A01               	xorlw	1	; case 1
+  2259     0314  1903               	skipnz
+  2260     0315  2AFE               	goto	l124
+  2261     0316  3A03               	xorlw	3	; case 2
+  2262     0317  1903               	skipnz
+  2263     0318  2B03               	goto	l125
+  2264     0319  3A01               	xorlw	1	; case 3
+  2265     031A  1903               	skipnz
+  2266     031B  2B08               	goto	l126
+  2267     031C  2B1D               	goto	l950
+  2268     031D                     l950:
+  2269                           
+  2270                           ;JOGGING.c: 182:     paso = (paso + 1) % 4;
+  2271     031D  0836               	movf	fullStepDerecha@paso,w
+  2272     031E  3E01               	addlw	1
+  2273     031F  00B6               	movwf	fullStepDerecha@paso
+  2274     0320  3003               	movlw	3
+  2275     0321  05B6               	andwf	fullStepDerecha@paso,f
+  2276     0322                     l127:
+  2277     0322  0008               	return
+  2278     0323                     __end_of_fullStepDerecha:
+  2279                           
+  2280                           	psect	text14
+  2281     038E                     __ptext14:	
+  2282 ;; *************** function _ISR *****************
+  2283 ;; Defined at:
+  2284 ;;		line 61 in file "JOGGING.c"
+  2285 ;; Parameters:    Size  Location     Type
+  2286 ;;		None
+  2287 ;; Auto vars:     Size  Location     Type
+  2288 ;;		None
+  2289 ;; Return value:  Size  Location     Type
+  2290 ;;                  1    wreg      void 
+  2291 ;; Registers used:
+  2292 ;;		None
+  2293 ;; Tracked objects:
+  2294 ;;		On entry : 0/0
+  2295 ;;		On exit  : 0/0
+  2296 ;;		Unchanged: 0/0
+  2297 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2298 ;;      Params:         0       0       0       0       0
+  2299 ;;      Locals:         0       0       0       0       0
+  2300 ;;      Temps:          2       0       0       0       0
+  2301 ;;      Totals:         2       0       0       0       0
+  2302 ;;Total ram usage:        2 bytes
+  2303 ;; Hardware stack levels used: 1
+  2304 ;; This function calls:
+  2305 ;;		Nothing
+  2306 ;; This function is called by:
+  2307 ;;		Interrupt level 1
+  2308 ;; This function uses a non-reentrant model
+  2309 ;;
+  2310                           
+  2311     038E                     _ISR:	
+  2312                           ;psect for function _ISR
+  2313                           
+  2314     038E                     i1l1058:
+  2315                           
+  2316                           ;JOGGING.c: 62:     if (INTCONbits.T0IF) {
+  2317     038E  1D0B               	btfss	11,2	;volatile
+  2318     038F  2B91               	goto	u63_21
+  2319     0390  2B92               	goto	u63_20
+  2320     0391                     u63_21:
+  2321     0391  2B99               	goto	i1l73
+  2322     0392                     u63_20:
+  2323     0392                     i1l1060:
+  2324                           
+  2325                           ;JOGGING.c: 63:         timer_flag = 1;
+  2326     0392  3001               	movlw	1
+  2327     0393  1283               	bcf	3,5	;RP0=0, select bank0
+  2328     0394  1303               	bcf	3,6	;RP1=0, select bank0
+  2329     0395  00B7               	movwf	_timer_flag	;volatile
+  2330                           
+  2331                           ;JOGGING.c: 64:         TMR0 = 100;
+  2332     0396  3064               	movlw	100
+  2333     0397  0081               	movwf	1	;volatile
+  2334                           
+  2335                           ;JOGGING.c: 65:         INTCONbits.T0IF = 0;
+  2336     0398  110B               	bcf	11,2	;volatile
+  2337     0399                     i1l73:
+  2338     0399  0871               	movf	??_ISR+1,w
+  2339     039A  008A               	movwf	10
+  2340     039B  0E70               	swapf	??_ISR,w
+  2341     039C  0083               	movwf	3
+  2342     039D  0EFE               	swapf	btemp,f
+  2343     039E  0E7E               	swapf	btemp,w
+  2344     039F  0009               	retfie
+  2345     03A0                     __end_of_ISR:
+  2346     0002                     ___latbits      equ	2
+  2347     007E                     btemp           set	126	;btemp
+  2348     007E                     wtemp0          set	126
+  2349                           
+  2350                           	psect	intentry
+  2351     0004                     __pintentry:	
+  2352                           ;incstack = 0
+  2353                           ; Regs used in _ISR: []
+  2354                           
+  2355     0004                     interrupt_function:
+  2356     007E                     saved_w         set	btemp
+  2357     0004  00FE               	movwf	btemp
+  2358     0005  0E03               	swapf	3,w
+  2359     0006  00F0               	movwf	??_ISR
+  2360     0007  080A               	movf	10,w
+  2361     0008  00F1               	movwf	??_ISR+1
+  2362     0009  120A  118A  2B8E   	ljmp	_ISR
+  2363                           
+  2364                           	psect	config
+  2365                           
+  2366                           ;Config register CONFIG1 @ 0x2007
+  2367                           ;	Oscillator Selection bits
+  2368                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+      +                          unction on RA7/OSC1/CLKIN
+  2369                           ;	Watchdog Timer Enable bit
+  2370                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  2371                           ;	Power-up Timer Enable bit
+  2372                           ;	PWRTE = OFF, PWRT disabled
+  2373                           ;	RE3/MCLR pin function select bit
+  2374                           ;	MCLRE = ON, RE3/MCLR pin function is MCLR
+  2375                           ;	Code Protection bit
+  2376                           ;	CP = OFF, Program memory code protection is disabled
+  2377                           ;	Data Code Protection bit
+  2378                           ;	CPD = OFF, Data memory code protection is disabled
+  2379                           ;	Brown Out Reset Selection bits
+  2380                           ;	BOREN = OFF, BOR disabled
+  2381                           ;	Internal External Switchover bit
+  2382                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+  2383                           ;	Fail-Safe Clock Monitor Enabled bit
+  2384                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+  2385                           ;	Low Voltage Programming Enable bit
+  2386                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+  2387                           ;	In-Circuit Debugger Mode bit
+  2388                           ;	DEBUG = 0x1, unprogrammed default
+  2389     2007                     	org	8199
+  2390     2007  20F4               	dw	8436
+
+Data Sizes:
+    Strings     117
+    Constant    0
+    Data        1
+    BSS         26
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     10      12
+    BANK0            80      2      27
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    LCD_PrintString@str	PTR const unsigned char  size(1) Largest target is 17
+		 -> STR_1(CODE[17]), STR_2(CODE[17]), STR_3(CODE[17]), STR_4(CODE[17]), 
+		 -> STR_5(CODE[17]), STR_6(CODE[16]), STR_7(CODE[16]), 
+
+
+Critical Paths under _main in COMMON
+
+    _LCD_UpdateDisplay->_LCD_PrintString
+    _LCD_UpdateDisplay->_LCD_SetCursor
+    _LCD_SetCursor->_LCD_SendByte
+    _LCD_PrintString->_LCD_SendByte
+    _LCD_Init->_LCD_SendByte
+    _LCD_SendByte->_LCD_SendNibble
+    _LCD_SendNibble->_LCD_PulseEnable
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_LCD_Init
+    _LCD_UpdateDisplay->_LCD_SetCursor
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    1467
+                            _Jogging
+                           _LCD_Init
+                  _LCD_UpdateDisplay
+                          _configPIC
+ ---------------------------------------------------------------------------------
+ (1) _configPIC                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _LCD_UpdateDisplay                                    0     0      0     950
+                    _LCD_PrintString
+                      _LCD_SetCursor
+ ---------------------------------------------------------------------------------
+ (2) _LCD_SetCursor                                        3     2      1     508
+                                              9 COMMON     1     0      1
+                                              0 BANK0      2     2      0
+                       _LCD_SendByte
+ ---------------------------------------------------------------------------------
+ (2) _LCD_PrintString                                      1     0      1     442
+                                              9 COMMON     1     0      1
+                       _LCD_SendByte
+ ---------------------------------------------------------------------------------
+ (1) _LCD_Init                                             2     2      0     472
+                                              0 BANK0      2     2      0
+                       _LCD_SendByte
+                     _LCD_SendNibble
+ ---------------------------------------------------------------------------------
+ (3) _LCD_SendByte                                         4     3      1     356
+                                              5 COMMON     4     3      1
+                     _LCD_SendNibble
+ ---------------------------------------------------------------------------------
+ (4) _LCD_SendNibble                                       2     2      0     116
+                                              3 COMMON     2     2      0
+                    _LCD_PulseEnable
+ ---------------------------------------------------------------------------------
+ (5) _LCD_PulseEnable                                      1     1      0       0
+                                              2 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _Jogging                                              1     1      0      45
+                                              2 COMMON     1     1      0
+                    _fullStepDerecha
+                  _fullStepIzquierda
+                    _halfStepDerecha
+                  _halfStepIzquierda
+ ---------------------------------------------------------------------------------
+ (2) _halfStepIzquierda                                    0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _halfStepDerecha                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _fullStepIzquierda                                    0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _fullStepDerecha                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 5
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (6) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Jogging
+     _fullStepDerecha
+     _fullStepIzquierda
+     _halfStepDerecha
+     _halfStepIzquierda
+   _LCD_Init
+     _LCD_SendByte
+       _LCD_SendNibble
+         _LCD_PulseEnable
+     _LCD_SendNibble
+   _LCD_UpdateDisplay
+     _LCD_PrintString
+       _LCD_SendByte
+     _LCD_SetCursor
+       _LCD_SendByte
+   _configPIC
+
+ _ISR (ROOT)
+
+Address spaces:
+Name               Size   Autos  Total    Usage
+BANK3               96      0       0      0.0%
+BITBANK3            96      0       0      0.0%
+BANK2               96      0       0      0.0%
+BITBANK2            96      0       0      0.0%
+BANK1               80      0       0      0.0%
+BITBANK1            80      0       0      0.0%
+BANK0               80      2      27     33.8%
+BITBANK0            80      0       0      0.0%
+COMMON              14     10      12     85.7%
+BITCOMMON           14      0       0      0.0%
+DATA                 0      0      39      0.0%
+STACK                0      0       0      0.0%
+
+
+Microchip Technology PIC Macro Assembler V3.00 build 20241204225717 
+Symbol Table                                                                                   Sat Apr 19 19:01:24 2025
+
+                          pc 0002                           l67 0340                           l76 03AB  
+                         l86 02CC                           l79 0292                           l89 0164  
+                         l97 038D                           fsr 0004             ?_halfStepDerecha 0070  
+              _LCD_SetCursor 0377                          l110 00DC                          l103 035E  
+                        l112 00EE                          l122 02F9                          l124 02FE  
+                        l116 0105                          l125 0303                          l133 02CE  
+                        l126 0308                          l150 021B                          l127 0322  
+                        l135 02D3                          l151 0220                          l136 02D8  
+                        l152 0225                          l144 0202                          l137 02DD  
+                        l153 024B                          l161 01BC                          l138 02F7  
+                        l146 0207                          l162 01C1                          l147 020C  
+                        l163 01C6                          l148 0211                          l164 01CB  
+                        l149 0216                          l165 01D0                          l166 01D5  
+                        l182 01B5                          l174 0195                          l167 01DA  
+                        l159 01B7                          l175 0187                          l168 0200  
+                        l178 01B1                          l179 01A3                          l810 0336  
+                        l812 033A                          l804 0323                          l814 033E  
+                        l806 0327                          l816 033F                          l808 032B  
+                        l950 031D                          l944 02F8                          l952 02CD  
+                        l960 0201                          l948 030D                          l956 02E2  
+                        l964 022A                          l972 01DF                          l958 02F2  
+                        l966 0246                          l974 01FB                          l968 01B6  
+                        _RB0 0030                          _RB1 0031                          _RC0 0038  
+                        _RB2 0032                          _RC1 0039                          _RC2 003A  
+                        _RD0 0040                          _RC3 003B                          _RD1 0041  
+                        _RB5 0035                          _RC4 003C                          _RD2 0042  
+                        _RC5 003D                          _RD3 0043                          u600 019D  
+                        u520 0170                          u601 019C                          u521 016F  
+                        u610 01A7                          u530 0175                          u611 01A6  
+                        u531 0174                          u620 01AB                          u540 0179  
+                        u700 0278                          _ISR 038E                          u621 01AA  
+                        u541 0178                          u701 0274                          u550 017D  
+                        u551 017C                          u560 0181                          u640 0254  
+                        u800 037F                          u561 0180                          u641 0250  
+                        u801 037E                          u570 018B                          u730 028A  
+                        u714 027B                          u810 035E                          u571 018A  
+                        u731 0286                          u811 035D                          u580 018F  
+                        u820 00AC                          u581 018E                          u725 027E  
+                        u821 00AB                          u590 0199                          u670 0266  
+                        u654 0257                          u750 029B                          u830 00C7  
+                        u591 0198                          u671 0262                          u751 0297  
+                        u831 00C6                          u744 028D                          u840 00D4  
+                        u665 025A                          u841 00D3                          u850 00E2  
+                        u907 0120                          u851 00E1                          u684 0269  
+                        u780 02B8                          u764 029E                          u860 00E6  
+                        u781 02B7                          u917 012F                          u861 00E5  
+                        u790 02BE                          u870 00F2                          u695 026C  
+                        u791 02BD                          u775 02A1                          u927 0160  
+                        u871 00F1                          u880 00F6                          u937 02C2  
+                        u881 00F5                          u947 02CA                          u957 03A9  
+                        u897 010C                          fsr0 0004                          indf 0000  
+             _LCD_SendNibble 024C                ?_LCD_SendByte 0075                         ?_ISR 0070  
+                       l1100 0383                         l1030 0165                         l1110 0352  
+                       l1102 0386                         l1040 017D                         l1032 016B  
+                       l1120 011A                         l1112 0106                         l1104 0341  
+                       l1050 019D                         l1042 0181                         l1034 0170  
+                       l1130 0145                         l1122 012B                         l1114 0110  
+                       l1106 0342                         l1052 01A7                         l1044 018B  
+                       l1036 0175                         l1132 014C                         l1124 0132  
+                       l1116 0113                         l1108 0350                         l1140 00A6  
+                       l1054 01AB                         l1046 018F                         l1038 0179  
+                       l1134 0153                         l1126 0138                         l1118 0114  
+                       l1150 00C7                         l1142 00AC                         l1048 0199  
+                       l1056 01B1                         l1080 0257                         l1136 015A  
+                       l1128 013E                         l1160 00F2                         l1152 00CF  
+                       l1144 00B4                         l1074 03A0                         l1082 028D  
+                       l1090 02B8                         l1162 00F6                         l1154 00D4  
+                       l1146 00BB                         l1138 009F                         l1170 035F  
+                       l1076 03A7                         l1092 02BE                         l1084 0294  
+                       l1164 00FE                         l1156 00E2                         l1148 00C2  
+                       l1172 0364                         l1078 024D                         l1094 02C8  
+                       l1086 029E                         l1158 00E6                         l1174 0369  
+                       l1088 02B3                         l1096 037A                         l1176 036E  
+                       l1098 037F                         STR_1 004C                         STR_2 003B  
+                       STR_3 006E                         STR_4 005D                         STR_5 002A  
+                       STR_6 008F                         STR_7 007F                         i1l73 0399  
+                       _TMR0 0001                         _main 035F                         btemp 007E  
+                       start 000C              __end_of_Jogging 01B6                        ??_ISR 0070  
+           __end_of_LCD_Init 0165               ?_LCD_SetCursor 0079                        ?_main 0070  
+                      _ANSEL 0188       __end_of_LCD_SendNibble 0293                        _PORTB 0006  
+                      _PORTC 0007                        _PORTD 0008                        u63_20 0392  
+                      u63_21 0391                        _TRISB 0086                        _TRISC 0087  
+                      _TRISD 0088               ??_LCD_SendByte 0076                        pclath 000A  
+                      status 0003                        wtemp0 007E       Jogging@last_jog_button 003A  
+          _halfStepIzquierda 01B6        halfStepIzquierda@paso 0033              _fullStepDerecha 02F8  
+         ?_halfStepIzquierda 0070              __initialization 000F                 __end_of_main 0377  
+        ??_halfStepIzquierda 0072                       ??_main 007A              ?_LCD_SendNibble 0070  
+            _pasos_restantes 0031              _LCD_PrintString 0341                       _ANSELH 0189  
+                     i1l1060 0392                       i1l1058 038E              _LCD_PulseEnable 03A0  
+                     _OSCCON 008F    __end_of_halfStepIzquierda 0201         LCD_SetCursor@address 0039  
+                  ??_Jogging 0072           LCD_PrintString@str 0079              ??_LCD_SetCursor 007A  
+                     saved_w 007E      __end_of_fullStepDerecha 0323      __end_of__initialization 0020  
+                  ?_LCD_Init 0070               __pcstackCOMMON 0070                 __pidataBANK0 03B4  
+       __end_of_LCD_SendByte 02CD      __end_of_LCD_PrintString 035F      __end_of_LCD_PulseEnable 03AC  
+                 __pbssBANK0 0020                   ??_LCD_Init 0038                   __pmaintext 035F  
+                 __pintentry 0004                   _lcd_buffer 0020                   __stringtab 0024  
+           ?_fullStepDerecha 0070                      _Jogging 0165            __end_of_configPIC 0341  
+           ??_LCD_SendNibble 0073             ?_LCD_PrintString 0079             LCD_SendByte@byte 0078  
+                    __ptext1 0323                      __ptext2 009F                      __ptext3 0377  
+                    __ptext4 0341                      __ptext5 0106                      __ptext6 0293  
+                    __ptext7 024C                      __ptext8 03A0                      __ptext9 0165  
+           ?_LCD_PulseEnable 0070                      clrloop0 03AD         end_of_initialization 0020  
+           LCD_SetCursor@col 0079             LCD_SetCursor@row 0038        fullStepIzquierda@paso 0035  
+  _media_vuelta_derecha_flag 007B                   _timer_flag 0037                 _LCD_SendByte 0293  
+        fullStepDerecha@paso 0036  _media_vuelta_izquierda_flag 007A            ??_halfStepDerecha 0072  
+      __end_of_LCD_SetCursor 038E          start_initialization 000F                  __end_of_ISR 03A0  
+          _fullStepIzquierda 02CD                  __pdataBANK0 003A           ?_fullStepIzquierda 0070  
+        ??_fullStepIzquierda 0072                  __pbssCOMMON 007A                    ___latbits 0002  
+              __pcstackBANK0 0038           LCD_SendByte@isData 0075                     ?_Jogging 0070  
+  __end_of_fullStepIzquierda 02F8          halfStepDerecha@paso 0034                    _configPIC 0323  
+                  __pstrings 0024            _LCD_UpdateDisplay 009F         LCD_SendNibble@nibble 0074  
+         ?_LCD_UpdateDisplay 0070            interrupt_function 0004                     _LCD_Init 0106  
+                  clear_ram0 03AC          ??_LCD_UpdateDisplay 007A                   ?_configPIC 0070  
+                __stringbase 0029    __end_of_LCD_UpdateDisplay 0106              _halfStepDerecha 0201  
+         __end_of__stringtab 002A                     __ptext10 01B6                     __ptext11 0201  
+                   __ptext12 02CD                     __ptext13 02F8                     __ptext14 038E  
+  Jogging@current_jog_button 0072                  ??_configPIC 0072      __end_of_halfStepDerecha 024C  
+          ??_fullStepDerecha 0072                   _INTCONbits 000B                     intlevel1 0000  
+          ??_LCD_PrintString 007A                    stringcode 0024            ??_LCD_PulseEnable 0072  
+                 _OPTION_REG 0081                     stringdir 0024                     stringtab 0024  
